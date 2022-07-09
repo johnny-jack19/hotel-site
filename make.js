@@ -139,9 +139,9 @@ function delBooking(id) {
 }
 
 let testCustomer = {
-    'customer-id': 99,
+    'customer-id': 100,
     'first-name': 'Hammer',
-    'last-name': 'Barn',
+    'last-name': 'Name',
     'card-number': '123-123-45556',
     'cvc': '123',
     'exp-date': '12/34'
