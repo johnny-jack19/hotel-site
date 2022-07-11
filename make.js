@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'http://localhost:3000';
 function makeCalDay(day) {
     fetch(url + '/make',
     {
@@ -139,11 +139,10 @@ function delBooking(id) {
 }
 
 let testCustomer = {
-    'customer-id': 100,
-    'first-name': 'Hammer',
-    'last-name': 'Name',
-    'card-number': '123-123-45556',
-    'cvc': '123',
+    'customer-id': 25,
+    'name': 'Test Name',
+    'card-number': 123-123-45556,
+    'cvc': 123,
     'exp-date': '12/34'
 }
 

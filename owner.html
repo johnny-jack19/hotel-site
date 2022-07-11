@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Page</title>
+</head>
+<body>
+    <h1>Owner page</h1>
+    <h2>New customer and billing</h2>
+    <form onsubmit="getForm();return false" id="book-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" required>
+        <label for="card-number">Card Number</label>
+        <input type="number" id="card-number" name="card-number" required>
+        <label for="cvc">CVC</label>
+        <input type="number" id="cvc" name="cvc" required>
+        <label for="exp-date">Expiration Date</label>
+        <input type="text" id="exp-date" name="exp-date" required>
+        <label for="check-in">Check In</label>
+        <input type="date" id="check-in" name="check-in" required>
+        <label for="check-out">Check Out</label>
+        <input type="date" id="check-out" name="check-out" required>
+        <label for="room-type">Room</label>
+        <select name="room-type" id="room-type">
+            <option value="single-queen">Single Queen</option>
+            <option value="double-queen">Double Queen</option>
+            <option value="single-king">Single King</option>
+        </select>
+        <input type="submit">
+    </form>
+    <button onclick="showData()">Data</button>
+    <button onclick="testBilling()">Bill</button>
+    <h2>Check dates</h2>
+    <form onsubmit="getAvil();return false" id="avil-form">
+        <label for="check-in-test">Check In</label>
+        <input type="date" id="check-in-test" name="check-in-test" required>
+        <label for="check-out-test">Check Out</label>
+        <input type="date" id="check-out-test" name="check-out-test" required>
+        <input type="submit">
+    </form>
+    <button onclick="testCheck()">Price</button>
+    <script src="./owner.js"></script>
+    <script src="./calls.js"></script>
+    <script src="./helper.js"></script>
+</body>
+</html>
