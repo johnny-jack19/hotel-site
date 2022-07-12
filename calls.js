@@ -28,7 +28,11 @@ function checkRooms(store, startDay, endDay) {
         }
     })
     .then(res => res.json())
-    .then(data => store.push(data.days))
+    .then(data => {
+        for (day of data.days){
+            store.push(day);
+        }
+    })
     .catch((error) => {
         console.error('Error:', error);
     });
