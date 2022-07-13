@@ -1,8 +1,12 @@
+//Varibles (not all needed)
 let data = {};
 let avilData = {};
 let billing = {};
 let booking = {};
 let checkOut = '';
+let customer;
+
+//Booking
 function getForm() {
     let formData = new FormData(document.getElementById("book-form"));
     for ([key, value] of formData) {
@@ -11,19 +15,9 @@ function getForm() {
     document.getElementById("book-form").reset();
 }
 
-function getAvil() {
-    let formData = new FormData(document.getElementById("avil-form"));
-    for ([key, value] of formData) {
-        avilData[key] = value;
-    }
-    document.getElementById("avil-form").reset();
-    console.log(avilData);
-    checkOut = formatDay(new Date(avilData['check-out-test']));
-}
-
 function showData() {
     console.log(data);
-
+    
     billing = {
         'name': data.name,
         'email': data.email,
@@ -38,13 +32,24 @@ function showData() {
         'check-in': data['check-in'],
         'number-of-days': ((new Date(data['check-out']) - new Date(data['check-in'])) / 1000 / 60 / 60 / 24)
     }
-
+    
     console.log(billing);
     console.log(booking);
 }
 
 function testBilling() {
-    makeNewCustomer(billing);
+    makeNewCustomer(booking, billing);
+}
+
+//Availability
+function getAvailability() {
+    let formData = new FormData(document.getElementById("avil-form"));
+    for ([key, value] of formData) {
+        avilData[key] = value;
+    }
+    document.getElementById("avil-form").reset();
+    console.log(avilData);
+    checkOut = formatDay(new Date(avilData['check-out-test']));
 }
 
 let myRooms;
@@ -88,4 +93,33 @@ function displayCheck() {
     console.log(openRooms);
     console.log(bedRooms);
     console.log(price);
+}
+
+//Make booking
+function addToBooking() {
+    if (data['room-type'] === 'single-queen') {
+        booking['room-cost'] = price['single-queen'];
+        booking['total-cost'] = price['single-queen'];
+        if (openRooms['room-1']) {
+            booking.room = 1;
+        } else {
+            booking.room = 2;
+        }
+    } else if (data['room-type'] === 'double-queen') {
+        booking['room-cost'] = price['double-queen'];
+        booking['total-cost'] = price['double-queen'];
+        if (openRooms['room-3']) {
+            booking.room = 3;
+        } else {
+            booking.room = 4;
+        }
+    } else {
+        booking['room-cost'] = price['single-king'];
+        booking['total-cost'] = price['single-king'];
+        if (openRooms['room-5']) {
+            booking.room = 5;
+        } else {
+            booking.room = 6;
+        }
+    }
 }

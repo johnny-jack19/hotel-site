@@ -1,5 +1,6 @@
 const url = 'http://localhost:3000';
-function makeNewCustomer(customer) {
+
+function makeNewCustomer(store, customer) {
     fetch(url + '/billing',
     {
         method: 'POST',
@@ -8,6 +9,25 @@ function makeNewCustomer(customer) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(customer)
+    })
+    .then(res => res.json())
+    .then(data => {
+        store['customer-id'] = data.results[0];
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function makeNewBooking(booking) {
+    fetch(url + '/booking',
+    {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(booking)
     })
     .then(res => res.json())
     .then(data => {
@@ -29,7 +49,7 @@ function checkRooms(store, startDay, endDay) {
     })
     .then(res => res.json())
     .then(data => {
-        for (day of data.days){
+        for (day of data.results){
             store.push(day);
         }
     })

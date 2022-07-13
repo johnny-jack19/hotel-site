@@ -20,11 +20,11 @@ app.post('/make', async (req, res) => {
 //Billing table
 app.post('/billing', async (req, res) => {
     const results = await db.makeCustomer(req.body);
-    res.status(201).json({id: results[0]});
+    res.status(201).json({results});
 });
 
 app.patch('/billing/:id', async (req, res) => {
-    const id = await db.updateBilling(req.params.id, req.body);
+    await db.updateBilling(req.params.id, req.body);
     res.status(201).json({success: true});
 });
 
@@ -35,14 +35,14 @@ app.patch('/rooms/:room/:booking', async (req, res) => {
 });
 
 app.patch('/rooms/:room/:booking/:startDay/:endDay', async (req, res) => {
-    const id = await db.addBookingToRooms(req.params.room, req.params.booking, req.params.startDay, req.params.endDay);
-    res.status(201).json({id});
+    await db.addBookingToRooms(req.params.room, req.params.booking, req.params.startDay, req.params.endDay);
+    res.status(201).json({success: true});
 })
 
 //Booking table
 app.post('/booking', async (req, res) => {
-    const booking = await db.makeBooking(req.body);
-    res.status(201).json({booking});
+    const results = await db.makeBooking(req.body);
+    res.status(201).json({results});
 });
 
 app.delete('/booking/:id', async (req, res) => {
@@ -58,28 +58,28 @@ app.patch('/booking/:id', async (req, res) => {
 
 //Gets
 app.get('/billing/:field/:id', async (req, res) => {
-    const customer = await db.getCustomer(req.params.field, req.params.id);
-    res.status(200).json({customer});
+    const results = await db.getCustomer(req.params.field, req.params.id);
+    res.status(200).json({results});
 });
 
 app.get('/booking/:field/:id', async (req, res) => {
-    const booking = await db.getBooking(req.params.field, req.params.id);
-    res.status(200).json({booking});
+    const results = await db.getBooking(req.params.field, req.params.id);
+    res.status(200).json({results});
 });
 
 app.get('/rooms', async (req, res) => {
-    const calendar = await db.getCalendar();
-    res.status(200).json(calendar);
+    const results = await db.getCalendar();
+    res.status(200).json(results);
 });
 
 app.get('/rooms/:day', async (req, res) => {
-    const day = await db.getDay(req.params.day);
-    res.status(200).json({day});
+    const results = await db.getDay(req.params.day);
+    res.status(200).json({results});
 });
 
 app.get('/rooms/:startDay/:endDay', async (req, res) => {
-    const days = await db.getDayRange(req.params.startDay, req.params.endDay);
-    res.status(200).json({days});
+    const results = await db.getDayRange(req.params.startDay, req.params.endDay);
+    res.status(200).json({results});
 });
 
 app.listen(port, () => {
