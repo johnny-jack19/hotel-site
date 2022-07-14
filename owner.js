@@ -30,6 +30,7 @@ function showData() {
     booking = {
         'name': data.name,
         'check-in': data['check-in'],
+        'check-out': data['check-out'],
         'number-of-days': ((new Date(data['check-out']) - new Date(data['check-in'])) / 1000 / 60 / 60 / 24)
     }
     
@@ -38,7 +39,24 @@ function showData() {
 }
 
 function testBilling() {
-    makeNewCustomer(booking, billing);
+    return new Promise((resolve, reject) => {
+        return resolve(makeNewCustomer(booking, billing));
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(addToBooking()), 1000);
+        });
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(makeNewBooking(booking)), 1000);
+        });
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(addBookingToRooms(`room-${booking.room}`, booking.id, booking['check-in'], checkOut)), 1000);
+        });
+    });
 }
 
 //Availability

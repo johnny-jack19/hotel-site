@@ -31,6 +31,7 @@ function makeNewBooking(booking) {
     })
     .then(res => res.json())
     .then(data => {
+        booking.id = data.results[0];
         console.log('Success:', data);
     })
     .catch((error) => {
@@ -52,6 +53,24 @@ function checkRooms(store, startDay, endDay) {
         for (day of data.results){
             store.push(day);
         }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function addBookingToRooms(room, booking, startDay, endDay) {
+    fetch(url + `/rooms/${room}/${booking}/${startDay}/${endDay}`,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
     })
     .catch((error) => {
         console.error('Error:', error);

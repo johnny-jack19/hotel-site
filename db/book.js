@@ -43,12 +43,12 @@ function addBookingToRooms(room, booking, startDay, endDay) {
 }
 
 //Gets
-function getCustomer(field, id) {
-    return knex('billing').where(field, id).select('*');
+function getCustomer(field, value) {
+    return knex('billing').where(field, value).select('*');
 }
 
-function getBooking(field, id) {
-    return knex('booking').where(field, id).select('*');
+function getBooking(field, value) {
+    return knex('booking').where(field, value).select('*');
 }
 
 function getCalendar() {

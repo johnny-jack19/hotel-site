@@ -46,6 +46,20 @@
     </form>
     <button onclick="testCheck()">Get check</button>
     <button onclick="displayCheck()">Show check</button>
+    <h2>Search, update, and delete booking</h2>
+    <form onsubmit="MAKE_THIS_FUNCTION();return false" id="delete-form">
+        <label for="booking-field">Search field</label>
+        <select name="booking-field" id="booking-field">
+            <option value="id">Booking ID</option>
+            <option value="name">Name</option>
+            <option value="customer">Customer ID</option>
+            <option value="check-in">Check In</option>
+        </select>
+        <label for="booking-value">Value</label>
+        <input type="text" id="booking-value" name="booking-value" required>
+        <input type="submit">
+    </form>
+
     <script src="./owner.js"></script>
     <script src="./calls.js"></script>
     <script src="./helper.js"></script>
