@@ -76,3 +76,63 @@ function addBookingToRooms(room, booking, startDay, endDay) {
         console.error('Error:', error);
     });
 }
+
+function getToday(store) {
+    fetch(url + `/rooms/${formatDay(new Date())}`,
+    {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        for (let i = 1; i <= 6; i++) {
+            store.push(data.results[0][`room-${i}`]);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function getOccupied(store) {
+    fetch(url + `/occupied`,
+    {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        for (let i = 1; i <= 6; i++) {
+            store.push(data[0][i]);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function getCustomerInfo(store,id) {
+    fetch(url + `/customer-info/${id}`,
+    {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        for (key in data.results[0]) {
+            store[key] = data.results[0][key];
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}

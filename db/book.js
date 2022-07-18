@@ -32,7 +32,7 @@ function processBooking(id) {
 //Rooms
 function deleteBookingFromRooms(room, booking) {
     return knex('rooms').where(room, booking).update({
-        [room]: null
+        [room]: 0
     });
 }
 
@@ -63,10 +63,25 @@ function getDayRange(startDay, endDay) {
     return knex('rooms').whereBetween('day', [startDay, endDay]).select('*');
 }
 
+function getOccupied() {
+    return knex('occupied').select('*');
+}
+
+function getBookingRange(range) {
+    return knex('booking').whereIn('id', range).select('name')
+}
+
+function getBookingAndCustomer(id) {
+    return knex('booking').where('id', id).join('billing', 'booking.customer-id', '=', 'billing.customer-id')
+    .select('billing.name', 'billing.email', 'billing.address', 'billing.customer-id', 'booking.number-of-days',
+            'booking.id', 'booking.room', 'booking.check-in', 'booking.check-out', 'booking.total-cost');
+}
+
 module.exports = {
     createDay, makeCustomer, makeBooking,
     deleteBooking, updateBilling, getCustomer,
     addBookingToRooms, deleteBookingFromRooms,
     getBooking, getCalendar, processBooking,
-    getDay, getDayRange
+    getDay, getDayRange, getOccupied,
+    getBookingRange, getBookingAndCustomer
 };

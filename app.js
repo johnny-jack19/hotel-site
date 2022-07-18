@@ -76,6 +76,12 @@ app.get('/booking/:field/:value', async (req, res) => {
     res.status(200).json({results});
 });
 
+//Get booking range
+app.get('/booking/?range', async (req, res) => {
+    const results = await db.getBooking(req.query.range);
+    res.status(200).json({results});
+});
+
 //Get calendar
 app.get('/rooms', async (req, res) => {
     const results = await db.getCalendar();
@@ -91,6 +97,18 @@ app.get('/rooms/:day', async (req, res) => {
 //Get day range
 app.get('/rooms/:startDay/:endDay', async (req, res) => {
     const results = await db.getDayRange(req.params.startDay, req.params.endDay);
+    res.status(200).json({results});
+});
+
+//Get occupied table
+app.get('/occupied', async (req, res) => {
+    const results = await db.getOccupied();
+    res.status(200).json(results);
+});
+
+//Get Booking and Customer info
+app.get('/customer-info/:id', async (req, res) => {
+    const results = await db.getBookingAndCustomer(req.params.id);
     res.status(200).json({results});
 });
 

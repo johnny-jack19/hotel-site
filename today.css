@@ -1,0 +1,32 @@
+body {
+    background-color: aqua;
+}
+
+#room-chart {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.room-card {
+    width: 30%;
+    margin: 1em auto;
+    height: 10em;
+    border: solid black 1px;
+}
+
+#modal {
+    width: 80vw;
+    height: 80vh;
+    background-color: brown;
+    margin: auto;
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+}
+
+.hidden {
+    display: none;
+}
