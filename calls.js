@@ -88,8 +88,8 @@ function getToday(store) {
     })
     .then(res => res.json())
     .then(data => {
-        for (let i = 1; i <= 6; i++) {
-            store.push(data.results[0][`room-${i}`]);
+        for (key in data.results[0]) {
+            store[key] = data.results[0][key];
         }
     })
     .catch((error) => {
@@ -117,7 +117,7 @@ function getOccupied(store) {
     });
 }
 
-function getCustomerInfo(store,id) {
+function getCustomerInfo(store, id) {
     fetch(url + `/customer-info/${id}`,
     {
         method: 'GET',
@@ -131,6 +131,24 @@ function getCustomerInfo(store,id) {
         for (key in data.results[0]) {
             store[key] = data.results[0][key];
         }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function updateOccupied(room, id) {
+    fetch(url + `/occupied/${room}/${id}`,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
     })
     .catch((error) => {
         console.error('Error:', error);

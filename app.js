@@ -63,6 +63,13 @@ app.patch('/booking/:id', async (req, res) => {
 
 });
 
+//************************Occupied Table**********************************
+//Update
+app.patch('/occupied/:room/:id', async (req, res) => {
+    await db.updateOccupied(req.params.room, req.params.id);
+    res.status(201).json({success: true});
+});
+
 //******************************Gets**************************************
 //Get customer
 app.get('/billing/:field/:value', async (req, res) => {
@@ -73,12 +80,6 @@ app.get('/billing/:field/:value', async (req, res) => {
 //Get booking
 app.get('/booking/:field/:value', async (req, res) => {
     const results = await db.getBooking(req.params.field, req.params.value);
-    res.status(200).json({results});
-});
-
-//Get booking range
-app.get('/booking/?range', async (req, res) => {
-    const results = await db.getBooking(req.query.range);
     res.status(200).json({results});
 });
 

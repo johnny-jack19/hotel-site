@@ -7,14 +7,6 @@ let checkOut = '';
 let customer;
 
 //Booking
-function getForm() {
-    let formData = new FormData(document.getElementById("book-form"));
-    for ([key, value] of formData) {
-        data[key] = value;
-    }
-    document.getElementById("book-form").reset();
-}
-
 function showData() {
     console.log(data);
     

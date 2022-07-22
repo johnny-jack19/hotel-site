@@ -9,7 +9,7 @@
 <body>
     <h1>Owner page</h1>
     <h2>New customer and billing</h2>
-    <form onsubmit="getForm();return false" id="book-form">
+    <form onsubmit="getForm(data, this.id);return false" id="book-form">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
         <label for="email">Email</label>
