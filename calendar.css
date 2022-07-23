@@ -22,6 +22,12 @@ body {
 #calendar_dates {
     display: flex;
     width: 100%;
+    flex-direction: column;
+}
+
+.month {
+    display: flex;
+    width: 100%;
     flex-wrap: wrap;
 }
 
@@ -37,5 +43,9 @@ body {
 }
 
 .post-pad-date {
+    display: none;
+}
+
+.hidden {
     display: none;
 }
