@@ -8,9 +8,115 @@
     <title>Hotel</title>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <button onclick="getCalendarData()">Test</button>
-    <div id="calendar"></div>
+    <h1>Lake Hotel (needs a better name)</h1>
+    <p>Hero Image goes here</p>
+    <form id="avail-form">
+        <label for="check-in-test">
+            Check In
+            <input type="date" id="check-in-test" name="check-in-test" required>
+        </label>
+        <label for="check-out-test">
+            Check Out
+            <input type="date" id="check-out-test" name="check-out-test" required>
+        </label>
+        <input type="submit">
+    </form>
+    <div id="booking-section" class="hidden">
+        <div id="room-selection"></div>
+        <div id="price-section"></div>
+        <div id="forms">
+            <form id="booking-form">
+                <fieldset>
+                    <legend>Personal Info</legend>
+                    <label for="first-name">
+                        First Name
+                        <input type="text" id="first-name" name="first-name" required>
+                    </label>
+                    <label for="last-name">
+                        Last Name
+                        <input type="text" id="last-name" name="last-name" required>
+                    </label>
+                    <label for="phone">
+                        Phone Number
+                        <input type="tel" id="phone" name="phone" required>
+                    </label>
+                    <label for="email">
+                        Email
+                        <input type="email" id="email" name="email" required>
+                    </label>
+                    <label for="address">
+                        Billing Address
+                        <input type="text" id="address" name="address" required>
+                    </label>
+                    <label for="city">
+                        City
+                        <input type="text" id="city" name="city" required>
+                    </label>
+                    <label for="zip">
+                        Zip Code
+                        <input type="number" id="zip" name="zip" required pattern="[0-9]{5}">
+                    </label>
+                    <label for="state">
+                        State
+                        <select id="state" name="state"></select>
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Card Info</legend>
+                    <label for="card-number">
+                        Card Number
+                        <input type="number" id="card-number" name="card-number" required>
+                    </label>
+                    <label for="cvc">
+                        CVC
+                        <input type="text" id="cvc" name="cvc" required minlength="3" maxlength="4" pattern="[0-9]+">
+                    </label>
+                    <label for="exp-date">
+                        Expiration Date
+                        <input type="month" id="exp-date" name="exp-date" required>
+                    </label>
+                    <label for="card-name">
+                        Name on Card
+                        <input type="text" id="card-name" name="card-name" required>
+                    </label>
+                </fieldset>
+                <input type="submit">
+            </form>
+            <button>Take in data button</button>
+        </div>
+        <div id="confirmation" class="hidden"></div>
+    </div>
+    <h2>Rooms</h2>
+    <div id="room-carousel">
+        <div class="slide">
+            <img src="./pictures/chastity-cortijo-FJLoqqIsSHc-unsplash.jpg">
+        </div>
+        <div class="slide">
+            <img src="./pictures/cristofer-maximilian-uQDRDqpYJHI-unsplash.jpg">
+        </div>
+        <div class="slide">
+            <img src="./pictures/edvin-johansson-rlwE8f8anOc-unsplash.jpg">
+        </div>
+        <div class="slide">
+            <img src="./pictures/melissa-cassar-wJEuwP4aaNU-unsplash.jpg">
+        </div>
+    </div>
+    <button class="btn btn-prev">Back</button>
+    <button class="btn btn-next">Next</button>
+    <p>Room bio</p>
+    <h2>Amenities</h2>
+    <div class="amenity-card">Pool</div>
+    <div class="amenity-card">Beach Access</div>
+    <div class="amenity-card">Bar</div>
+    <div class="amenity-card">Music</div>
+    <div class="amenity-card">Breakfast</div>
+    <h2>Explore</h2>
+    <p>map</p>
+    <h3>Beach</h3>
+    <h3>Food</h3>
+    <h3>Fun for kids</h3>
+    <h3>Night Life</h3>
+    <footer>Footer</footer>
     <script src="index.js"></script>
 </body>
 </html>

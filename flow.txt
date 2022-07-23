@@ -34,25 +34,3 @@ Submit
 	Update billing
 
 *********************************************************************************
-
---------------------------------Process booking----------------------------------
-
-Set today check-out bookings to pending
-
-When ready to deal with it:
-	Check all pending
-
-Loop through pending and process with additon / subtraction and set to processed
-
-*********************************************************************************
-
------------------------------------Cleaning rooms--------------------------------
-Midnight
-
-Rooms set to 'occupied' if it was booked yesterday
-
-Rooms set to 'needs cleaned' if there is a checkout today
-
-Rooms set to 'check' if else
-
-*********************************************************************************

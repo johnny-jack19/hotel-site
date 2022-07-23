@@ -1,5 +1,6 @@
 const url = 'http://localhost:3000';
 
+//--------------------------------------------Billing----------------------------------------------
 function makeNewCustomer(store, customer) {
     fetch(url + '/billing',
     {
@@ -19,6 +20,7 @@ function makeNewCustomer(store, customer) {
     });
 }
 
+//-------------------------------------------Booking-----------------------------------------------
 function makeNewBooking(booking) {
     fetch(url + '/booking',
     {
@@ -39,6 +41,46 @@ function makeNewBooking(booking) {
     });
 }
 
+//--------------------------------------------Rooms------------------------------------------------
+function addBookingToRooms(room, booking, startDay, endDay) {
+    fetch(url + `/rooms/${room}/${booking}/${startDay}/${endDay}`,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+//--------------------------------------------Occupied---------------------------------------------
+function updateOccupied(room, id) {
+    fetch(url + `/occupied/${room}/${id}`,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+//----------------------------------------------Gets-----------------------------------------------
+//Gets day range (rooms)
 function checkRooms(store, startDay, endDay) {
     fetch(url + `/rooms/${startDay}/${endDay}`,
     {
@@ -59,24 +101,7 @@ function checkRooms(store, startDay, endDay) {
     });
 }
 
-function addBookingToRooms(room, booking, startDay, endDay) {
-    fetch(url + `/rooms/${room}/${booking}/${startDay}/${endDay}`,
-    {
-        method: 'PATCH',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
+//Get today (rooms)
 function getToday(store) {
     fetch(url + `/rooms/${formatDay(new Date())}`,
     {
@@ -97,6 +122,31 @@ function getToday(store) {
     });
 }
 
+//Get calendar (rooms)
+function getCalendarData(store) {
+    fetch(url + '/rooms',
+    {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        for (day of data) {
+            let booked = 0;
+            for (let i = 1; i <= 6; i++) {
+                if (day[`room-${i}`] != 0) {
+                    booked++;
+                }
+            }
+            store.push(booked);
+        }
+    })
+}
+
+//Get occupied (occupied)
 function getOccupied(store) {
     fetch(url + `/occupied`,
     {
@@ -117,6 +167,7 @@ function getOccupied(store) {
     });
 }
 
+//Get customer info (billing and booking)
 function getCustomerInfo(store, id) {
     fetch(url + `/customer-info/${id}`,
     {
@@ -131,24 +182,6 @@ function getCustomerInfo(store, id) {
         for (key in data.results[0]) {
             store[key] = data.results[0][key];
         }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-function updateOccupied(room, id) {
-    fetch(url + `/occupied/${room}/${id}`,
-    {
-        method: 'PATCH',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log('Success:', data);
     })
     .catch((error) => {
         console.error('Error:', error);

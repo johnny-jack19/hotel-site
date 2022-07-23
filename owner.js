@@ -3,8 +3,20 @@ let data = {};
 let avilData = {};
 let billing = {};
 let booking = {};
-let checkOut = '';
+let testCheckOut;
 let customer;
+const checkIn = document.getElementById('check-in');
+const checkOut = document.getElementById('check-out');
+checkIn.min = new Date().toLocaleDateString('en-ca');
+
+checkIn.addEventListener('change', (e) => {
+    let checkInValue = new Date(checkIn.value)
+    checkOut.min = new Date(checkInValue.getTime() + 126400000).toLocaleDateString('en-ca');
+    checkOut.disabled = false;
+});
+
+
+//document.getElementById('check-out').min = new Date(document.getElementById('check-in').value).toLocaleDateString('en-ca');
 
 //Booking
 function showData() {
@@ -46,7 +58,7 @@ function testBilling() {
     })
     .then(() => {
         return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(addBookingToRooms(`room-${booking.room}`, booking.id, booking['check-in'], checkOut)), 1000);
+            setTimeout(() => resolve(addBookingToRooms(`room-${booking.room}`, booking.id, booking['check-in'], testCheckOut)), 1000);
         });
     });
 }
@@ -59,7 +71,7 @@ function getAvailability() {
     }
     document.getElementById("avil-form").reset();
     console.log(avilData);
-    checkOut = formatDay(new Date(avilData['check-out-test']));
+    testCheckOut = formatDay(new Date(avilData['check-out-test']));
 }
 
 let myRooms;
@@ -81,7 +93,7 @@ function testCheck() {
         'room-5': true,
         'room-6': true
     };
-    checkRooms(myRooms, avilData['check-in-test'], checkOut);
+    checkRooms(myRooms, avilData['check-in-test'], testCheckOut);
 }
 
 function displayCheck() {

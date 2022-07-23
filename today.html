@@ -8,14 +8,41 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id="today"></h1>
-    <div id="room-chart">
-        <div class="room-card" id="room-1">Room 1</div>
-        <div class="room-card" id="room-2">Room 2</div>
-        <div class="room-card" id="room-3">Room 3</div>
-        <div class="room-card" id="room-4">Room 4</div>
-        <div class="room-card" id="room-5">Room 5</div>
-        <div class="room-card" id="room-6">Room 6</div>
+    <nav>
+        <div class="nav-tab" id="today-tab">Today</div>
+        <div class="nav-tab" id="calendar-tab">Calendar</div>
+        <div class="nav-tab" id="booking-tab">Booking</div>
+        <div class="nav-tab" id="lookup-tab">Look Up</div>
+        <div class="nav-tab" id="contacts-tab">Contacts</div>
+    </nav>
+    <h1>Hotel</h1>
+    <div id="today">
+        <div id="today-page">
+            <div class="room-card" id="room-1">Room 1</div>
+            <div class="room-card" id="room-2">Room 2</div>
+            <div class="room-card" id="room-3">Room 3</div>
+            <div class="room-card" id="room-4">Room 4</div>
+            <div class="room-card" id="room-5">Room 5</div>
+            <div class="room-card" id="room-6">Room 6</div>
+        </div>
+    </div>
+    <div id="calendar" class="hidden">
+        <div id="calendar_header">
+            <button id="backward" onclick="changeMonth(this.id)">Back</button>
+            <h2 id="calendar_header__month-year">Month Year</h2>
+            <button id="forward" onclick="changeMonth(this.id)">Forward</button>
+        </div>
+        <div id="calendar_weekdays">
+            <div>Sunday</div>
+            <div>Monday</div>
+            <div>Tuesday</div>
+            <div>Wednesday</div>
+            <div>Thursday</div>
+            <div>Friday</div>
+            <div>Saturday</div>
+        </div>
+        <div id="calendar_dates">
+        </div>
     </div>
     <div id="modal" class="hidden">
         <button onclick="closeModal()">X</button>
