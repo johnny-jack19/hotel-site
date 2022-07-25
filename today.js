@@ -13,24 +13,27 @@ calendarTab.addEventListener('click', (e) => {
     calendarPage.classList.remove('hidden');
     openPage = calendarPage
 });
-// const bookingTab = document.getElementById('booking-tab');
-// bookingTab.addEventListener('click', (e) => {
-//     openPage.classList.add('hidden');
-//     bookingPage.classList.remove('hidden');
-//     openPage = bookingPage
-// });
-// const lookUpTab = document.getElementById('lookup-tab');
-// lookUpTab.addEventListener('click', (e) => {
-//     openPage.classList.add('hidden');
-//     lookUpPage.classList.remove('hidden');
-//     openPage = lookUpPage
-// });
-// const contactsTab = document.getElementById('contacts-tab');
-// contactsTab.addEventListener('click', (e) => {
-//     openPage.classList.add('hidden');
-//     contactsPage.classList.remove('hidden');
-//     openPage = contactsPage
-// });
+const bookingTab = document.getElementById('booking-tab');
+const bookingPage = document.getElementById('booking');
+bookingTab.addEventListener('click', (e) => {
+    openPage.classList.add('hidden');
+    bookingPage.classList.remove('hidden');
+    openPage = bookingPage
+});
+const lookUpTab = document.getElementById('lookup-tab');
+const lookUpPage = document.getElementById('look-up');
+lookUpTab.addEventListener('click', (e) => {
+    openPage.classList.add('hidden');
+    lookUpPage.classList.remove('hidden');
+    openPage = lookUpPage
+});
+const contactsTab = document.getElementById('contacts-tab');
+const contactsPage = document.getElementById('contacts');
+contactsTab.addEventListener('click', (e) => {
+    openPage.classList.add('hidden');
+    contactsPage.classList.remove('hidden');
+    openPage = contactsPage
+});
 let openPage = todayPage;
 
 //Today varibles-----------------------------------------------------------------------------------
@@ -56,6 +59,32 @@ function updateToday() {
 Array.from(roomCards).forEach(room => {
     room.addEventListener('click', expandCard);
 });
+
+addToRoomCards();
+
+function addToRoomCards() {
+    if(todayOccupied.length !== 0 && todayData.length !== 0) {
+        Array.from(roomCards).forEach(room => {
+            let isBooked;
+            let isOccupied;
+            if (todayOccupied[roomIndex[room.id].index] != 0) {
+                isOccupied = 'Occupied';
+            } else {
+                isOccupied = 'Vacant';
+            }
+            if (todayData[room.id] != 0) {
+                isBooked = 'Booked';
+            } else {
+                isBooked = 'Open';
+            }
+            room.innerHTML += `<p>${isOccupied}</p><p>${isBooked}</p>`
+        });
+    } else {
+        setTimeout(() => {
+            addToRoomCards(), 1000
+        });
+    }
+}
 //Today functions
 //Modal > Room-------------------------------------------------------------------------------------(Needs row inspect)
 function expandCard() {
@@ -75,13 +104,15 @@ function expandCard() {
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
-        <button onclick="closeModal()">X</button>
+        <button class="close" onclick="closeModal()">X</button>
         <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
         <div class="row"><div>Guest:</div><div id="guest-name">${occupiedGuest.name}</div><div id="guest-booking">${todayOccupied[roomIndex[currentRoom].index]}</div></div>
         <div class="row"><div>Booked:</div><div id="booked-name">${bookedGuest.name}</div><div id="booked-booking">${todayData[currentRoom]}</div></div>
+        <div class="button-row">
         <button id="check-in-button" onclick="modalCheckIn()">Check In</button>
         <button id="check-out-button" onclick="modalCheckOut()">Check Out</button>
         <button id="book-button" onclick="modalBook()">Book</button>
+        </div>
         `), 1000);
     })
     .then(() => {setTimeout(() =>
@@ -116,7 +147,7 @@ function modalCheckIn() {
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
-        <button onclick="closeModal()">X</button>
+        <button class="close" onclick="closeModal()">X</button>
         <h3>Room ${customerInfo.room} Booking</h3>
         <div>Name: </div><div>${customerInfo.name}</div>
         <div>Address: </div><div>${customerInfo.address}</div>
@@ -133,7 +164,7 @@ function modalCheckIn() {
 function checkIn() {
     updateOccupied(roomIndex[currentRoom].index + 1, todayData[currentRoom]);
     modal.innerHTML = (`
-    <button onclick="closeModal()">X</button>
+    <button class="close" onclick="closeModal()">X</button>
     <div>Task Completed</div>
     `);
 }
@@ -150,7 +181,7 @@ function modalCheckOut() {
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
-        <button onclick="closeModal()">X</button>
+        <button class="close" onclick="closeModal()">X</button>
         <h3>Room ${customerInfo.room} Booking</h3>
         <div>Name: </div><div>${customerInfo.name}</div>
         <div>Address: </div><div>${customerInfo.address}</div>
@@ -166,7 +197,7 @@ function modalCheckOut() {
 function checkOut() {
     updateOccupied(roomIndex[currentRoom].index + 1, 0);
     modal.innerHTML = (`
-    <button onclick="closeModal()">X</button>
+    <button class="close" onclick="closeModal()">X</button>
     <div>Task Completed</div>
     `);
 }
@@ -175,6 +206,7 @@ function checkOut() {
 function modalBook() {
     const customerInfo = {};
     modal.innerHTML = (`
+    <button class="close" onclick="closeModal()">X</button>
     <form id="modal_book-form">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
@@ -283,8 +315,8 @@ function makeCal(month, daysInMonth, startDate) {
         if (i < startDate) {
             dateSquare.classList.add('pad-date');
         } else if (i > startDate && i <= daysInMonth + startDate) {
-            dateSquare.innerHTML = `<div class="day-number">${i - startDate}</div><div><div>Vacant ${
-                6 - calendarVacanies[k]}</div><div>Booked ${calendarVacanies[k]}</div></div>`;
+            dateSquare.innerHTML = `<div class="day-number">${i - startDate}</div><div class="day-vacant"><div>Vacant: ${
+                6 - calendarVacanies[k]}</div><hr><div>Booked: ${calendarVacanies[k]}</div></div>`;
             k++;
         } else if(startDate + daysInMonth > 35 || i <= 35) {
             dateSquare.classList.add('pad-date');

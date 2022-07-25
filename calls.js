@@ -20,6 +20,26 @@ function makeNewCustomer(store, customer) {
     });
 }
 
+//Yet to be used
+function updateCustomer(id, customer) {
+    fetch(url + '/billing/' + id,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(customer)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 //-------------------------------------------Booking-----------------------------------------------
 function makeNewBooking(booking) {
     fetch(url + '/booking',
@@ -34,6 +54,25 @@ function makeNewBooking(booking) {
     .then(res => res.json())
     .then(data => {
         booking.id = data.results[0];
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+//Yet to be used
+function delBooking(id) {
+    fetch(url + '/booking/' + id,
+    {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
         console.log('Success:', data);
     })
     .catch((error) => {
@@ -144,6 +183,9 @@ function getCalendarData(store) {
             store.push(booked);
         }
     })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 
 //Get occupied (occupied)

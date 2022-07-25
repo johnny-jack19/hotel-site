@@ -9,27 +9,32 @@
 </head>
 <body>
     <nav>
+        <div>LOGO</div>
         <div class="nav-tab" id="today-tab">Today</div>
         <div class="nav-tab" id="calendar-tab">Calendar</div>
         <div class="nav-tab" id="booking-tab">Booking</div>
         <div class="nav-tab" id="lookup-tab">Look Up</div>
         <div class="nav-tab" id="contacts-tab">Contacts</div>
     </nav>
-    <h1>Hotel</h1>
-    <div id="today">
+    <!--<h1>Hotel</h1>-->
+    <!-- **********************************************Today******************************************* -->
+    <div id="today" class="tab">
+        <h2>Today</h2>
         <div id="today-page">
-            <div class="room-card" id="room-1">Room 1</div>
-            <div class="room-card" id="room-2">Room 2</div>
-            <div class="room-card" id="room-3">Room 3</div>
-            <div class="room-card" id="room-4">Room 4</div>
-            <div class="room-card" id="room-5">Room 5</div>
-            <div class="room-card" id="room-6">Room 6</div>
+            <div class="room-card" id="room-1"><h3>Room 1</h3></div>
+            <div class="room-card" id="room-2"><h3>Room 2</h3></div>
+            <div class="room-card" id="room-3"><h3>Room 3</h3></div>
+            <div class="room-card" id="room-4"><h3>Room 4</h3></div>
+            <div class="room-card" id="room-5"><h3>Room 5</h3></div>
+            <div class="room-card" id="room-6"><h3>Room 6</h3></div>
         </div>
     </div>
-    <div id="calendar" class="hidden">
+    <!-- *********************************************Calendar***************************************** -->
+    <div id="calendar" class="tab hidden">
+        <h2>Calendar</h2>
         <div id="calendar_header">
             <button id="backward" onclick="changeMonth(this.id)">Back</button>
-            <h2 id="calendar_header__month-year">Month Year</h2>
+            <h3 id="calendar_header__month-year">Month Year</h3>
             <button id="forward" onclick="changeMonth(this.id)">Forward</button>
         </div>
         <div id="calendar_weekdays">
@@ -47,6 +52,145 @@
     <div id="modal" class="hidden">
         <button onclick="closeModal()">X</button>
     </div>
+    <!-- *****************************************Booking************************************************ -->
+    <div id="booking" class="tab hidden">
+        <h2>Booking</h2>
+        <form id="avail-form">
+            <label for="check-in-test">
+                Check In
+                <input type="date" id="check-in-test" name="check-in-test" required>
+            </label>
+            <label for="check-out-test">
+                Check Out
+                <input type="date" id="check-out-test" name="check-out-test" required>
+            </label>
+            <input type="submit">
+        </form>
+        <form id="booking-form">
+            <fieldset>
+                <input type="radio" id="single-queen" value="single-queen" name="bed">
+                <label for="single-queen" class="form-3" id="single-queen-label">
+                    Single Queen
+                </label>
+                <input type="radio" id="double-queen" value="double-queen" name="bed">
+                <label for="double-queen" class="form-3" id="double-queen-label">
+                    Double Queen
+                </label>
+                <input type="radio" id="single-king" value="single-king" name="bed">
+                <label for="single-king" class="form-3" id="single-king-label">
+                    Single King
+                </label>
+            </fieldset>
+            <label for="first-name" class="form-2">
+                First Name
+                <input type="text" id="first-name" name="first-name" required>
+                </label>
+                <label for="last-name" class="form-2">
+                    Last Name
+                    <input type="text" id="last-name" name="last-name" required>
+                </label>
+                <label for="phone" class="form-2">
+                    Phone Number
+                    <input type="tel" id="phone" name="phone" required>
+                </label>
+                <label for="email" class="form-2">
+                    Email
+                    <input type="email" id="email" name="email" required>
+                </label>
+                <label for="address" class="form-1">
+                    Billing Address
+                    <input type="text" id="address" name="address" required>
+                </label>
+                <label for="city" class="form-2">
+                    City
+                    <input type="text" id="city" name="city" required>
+                </label>
+                <label for="zip" class="form-2">
+                    Zip Code
+                    <input type="number" id="zip" name="zip" required pattern="[0-9]{5}">
+                </label>
+                <label for="state" class="form-2">
+                    State
+                    <select id="state" name="state"></select>
+                </label>
+                <label for="card-name" class="form-2">
+                    Name on Card
+                    <input type="text" id="card-name" name="card-name" required>
+                </label>
+                <label for="card-number" class="form-2">
+                    Card Number
+                    <input type="number" id="card-number" name="card-number" required>
+                </label>
+                <label for="cvc" class="form-6">
+                    CVC
+                    <input type="text" id="cvc" name="cvc" required minlength="3" maxlength="4" pattern="[0-9]+">
+                </label>
+                <label for="exp-date" class="form-6">
+                    Expiration Date
+                    <input type="month" id="exp-date" name="exp-date" required>
+                </label>
+            <input type="submit">
+        </form>
+    </div>
+    <!-- *****************************************Look up************************************************ -->
+    <div id="look-up" class="tab hidden">
+        <h2>Look Up</h2>
+    </div>
+    <!-- *****************************************Contacts************************************************ -->
+    <div id="contacts" class="tab hidden">
+        <h2>Contacts</h2>
+        <div id="contact-container">
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+            <div class="contact">
+                <p class="contact-title">Job Title</p>
+                <p class="contact-name">Name: AAAAAAA</p>
+                <p class="contact-number">Number: (123)-456-7890</p>
+                <p class="contact-email">Email: aaa@aa.com</p>
+            </div>
+        </div>
+    </div>
+    <!-- *****************************************Scripts************************************************ -->
     <script src="./helper.js"></script>
     <script src="./calls.js"></script>
     <script src="./today.js"></script>

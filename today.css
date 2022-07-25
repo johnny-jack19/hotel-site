@@ -1,43 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: aqua;
+    background-color: rgb(60, 110, 113);
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+nav {
+    background-color: rgb(40, 75, 99);
+    width: 9vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+}
+
+button {
+    height: 2em;
+    width: 6em;
+    color: white;
+    font-size: 1em;
+    background-color: rgb(40, 75, 99);
+    border-radius: 20px;
+    margin: auto 5em;
+}
+
+form {
+    background-color: rgb(217, 217, 217);
+    width: 70%;
+    font-size: 1.2em;
+    padding: .5em;
+    margin: 1em auto 1em auto;
+    border-radius: 10px;
+}
+
+fieldset {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+}
+
+input {
+    height: 1.5em;
+}
+
+.form-2 {
+    width: 40%;
+}
+
+.form-1 {
+    width: 90%;
+}
+
+.form-6 {
+    width: 15%
+}
+
+.form-3 {
+    width: 25%;
+    margin: auto;
+    border: 1px black solid;
+    text-align: center;
+    font-size: 1em;
+    padding: .5em;
+    border-radius: 8px;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    width: 0;
+}
+
+input[type="radio"]:checked + label{
+    color: white;
+    background-color: rgb(55, 104, 139);
+}
+
+
+input[type="submit"] {
+    color: white;
+    font-size: 1em;
+    height: 2em;
+    background-color: rgb(40, 75, 99);
+    width: 7em;
+    margin: .5em 5%;
+    border-radius: 5px;
+}
+
+#avail-form {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.room-card h3 {
+    background-color: rgb(53, 53, 53);
+    border-radius: 20px;
+    padding: .2em;
+}
+
+#booking-form {
+    margin: 2em auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    transform: translateY(-1em);
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    margin: .5em 5%;
+}
+
+h2 {
+    text-align: center;
+    background-color: rgb(53, 53, 53);
+    width: 110%;
+    margin-left: -5.7%;
+    margin-bottom: .5em;
+    padding: 1em 0;
+    color: white;
+    font-size: xx-large;
+}
+
+.nav-tab {
+    font-size: x-large;
+    color: white;
+    width: 100%;
+    padding-top: 40%;
+    flex-grow: 1;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.tab {
+    padding-left: 9.5%;
+    width: 90%;
+    height: 100%;
+}
+#today {
+    width: 88%;
 }
 
 #today-page {
-    width: 90%;
-    margin: auto;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
 .room-card {
-    width: 30%;
     margin: 1em auto;
-    height: 10em;
     border: solid black 1px;
+    color: white;
+    font-size: 2em;
+    line-height: 2em;
+    background-color: rgb(40, 75, 99);
+    text-align: center;
+    padding: 3% 11%;
 }
 
 #modal {
-    width: 80vw;
-    height: 80vh;
-    background-color: brown;
+    width: 50vw;
+    height: 50vh;
+    background-color: rgb(217, 217, 217);
     margin: auto;
     position: fixed;
-    top: 10vh;
-    left: 10vw;
+    top: 25vh;
+    left: 25vw;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal h3 {
+    background-color: rgb(40, 75, 99);
+    color: white;
+    border-radius: 5px 5px 0 0;
+    font-size: 2em;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+.close {
+    position: fixed;
+    color: white;
+    background-color: rgb(53, 53, 53);
+    width: 2vw;
+    height: 2vw;
+    font-size: 1em;
+    border-radius: 5px;
+    margin: 0;
+    margin-left: 48vw;
 }
 
 
 /* Calendar------------------------------------------------------------------------------------------------ */
 
 #calendar {
-    width: 90%;
-    margin: auto;
+    width: 88%;
 }
 
 #calendar_header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
@@ -62,16 +246,95 @@ body {
 .day {
     width: 13%;
     border: solid black 1px;
+    border-radius: 8px;
     height: 7em;
     margin: .5em auto;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    box-shadow: 5px 5px 8px black;
+}
+
+#calendar_header__month-year {
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px rgb(53, 53, 53);
+    margin: .5em;
+}
+
+#calendar_weekdays {
+    color: white;
+    font-size: 1.5em;
+    margin: .5em;
+
+}
+
+.day-number {
+    color: white;
+    width: 50%;
+    padding-top: .5em;
+    font-size: 3em;
+    text-align: center;
+    border-radius: 8px 0 0 8px;
+    background-color: rgb(40, 75, 99);
+}
+
+.day-vacant {
+    width: 50%;
+    font-weight: 600;
+    border-radius: 0 8px 8px 0;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .pad-date {
     border: none;
+    background-color: lightgray;
+    opacity: .5;
+    box-shadow: 1px 1px 2px black;
 }
 
 .post-pad-date {
     display: none;
+}
+
+#contact-container {
+    display: flex;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contact {
+    background-color: rgb(217, 217, 217);
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
+    padding: 1em;
+    justify-content: space-around;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
+}
+
+.contact-title {
+    text-align: center;
+    font-size: 1.5em;
+    width: 75%;
+    padding: .3em;
+    font-style: italic;
+    font-weight: 600;
+}
+.contact-name {
+    text-align: center;
+    font-size: 1.2em;
+    width: 75%;
+    padding: .5em;
 }
 
 /* hidden---------------------------------------------------------------------------------------------- */
