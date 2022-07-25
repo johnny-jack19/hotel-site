@@ -46,6 +46,7 @@ const tomorrow = new Date();
 tomorrow.setDate(today.getDate() + 1);
 let currentRoom = null;
 const roomCards = document.getElementsByClassName('room-card');
+const overlay = document.getElementById('overlay');
 
 //Today calls--------------------------------------------------------------------------------------
 updateToday();
@@ -54,13 +55,14 @@ function updateToday() {
     todayOccupied.length = 0;
     getToday(todayData);
     getOccupied(todayOccupied);
+    addToRoomCards();
+    overlay.classList.add('hidden');
 }
 
 Array.from(roomCards).forEach(room => {
     room.addEventListener('click', expandCard);
 });
 
-addToRoomCards();
 
 function addToRoomCards() {
     if(todayOccupied.length !== 0 && todayData.length !== 0) {
@@ -77,7 +79,7 @@ function addToRoomCards() {
             } else {
                 isBooked = 'Open';
             }
-            room.innerHTML += `<p>${isOccupied}</p><p>${isBooked}</p>`
+            room.innerHTML = `<h3>Room ${roomIndex[room.id].index + 1}</h3><p>${isOccupied}</p><p>${isBooked}</p>`
         });
     } else {
         setTimeout(() => {
@@ -88,6 +90,7 @@ function addToRoomCards() {
 //Today functions
 //Modal > Room-------------------------------------------------------------------------------------(Needs row inspect)
 function expandCard() {
+    overlay.classList.remove('hidden');
     currentRoom = this.id;
     const occupiedGuest = {};
     const bookedGuest = {};
@@ -100,7 +103,10 @@ function expandCard() {
         })
     })
     .then(() => {
-        modal.innerHTML = 'LOADING';
+        modal.innerHTML = (`
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <p class="loading">LOADING...</p>
+        `);
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
@@ -126,12 +132,15 @@ function expandCard() {
 function disableButtons() {
     if (todayOccupied[roomIndex[currentRoom].index] == 0) {
         document.getElementById('check-out-button').disabled = true;
+        document.getElementById('check-out-button').classList.add('hidden');
     }
     if (todayData[currentRoom] == 0 || todayOccupied[roomIndex[currentRoom].index] != 0) {
         document.getElementById('check-in-button').disabled = true;
+        document.getElementById('check-in-button').classList.add('hidden');
     }
     if (todayData[currentRoom] != 0) {
         document.getElementById('book-button').disabled = true;
+        document.getElementById('book-button').classList.add('hidden');
     }
 }
 
@@ -143,19 +152,28 @@ function modalCheckIn() {
         return resolve(getCustomerInfo(customerInfo, roomBooking));
     })
     .then(() => {
-        modal.innerHTML = 'LOADING';
+        modal.innerHTML = (`
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <p class="loading">LOADING...</p>
+        `);
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
         <button class="close" onclick="closeModal()">X</button>
-        <h3>Room ${customerInfo.room} Booking</h3>
-        <div>Name: </div><div>${customerInfo.name}</div>
-        <div>Address: </div><div>${customerInfo.address}</div>
-        <div>Email: </div><div>${customerInfo.email}</div>
-        <div>Check-In Date: </div><div>${customerInfo['check-in']}</div>
-        <div>Check-Out Date: </div><div>${customerInfo['check-out']}</div>
-        <div>Cost: </div><div>${customerInfo['total-cost']}</div>
-        <button onclick="checkIn()">Confirm</button>
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <div class="customer-info-row">
+            <div>Name: ${customerInfo.name}</div>
+            <div>Address: ${customerInfo.address}</div>
+        </div>
+        <div class="customer-info-row">
+            <div>Email: ${customerInfo.email}</div>
+            <div>Cost: $${customerInfo['total-cost'].toFixed(2)}</div>
+        </div>
+        <div class="customer-info-row">
+            <div>Check-In Date: ${customerInfo['check-in']}</div>
+            <div>Check-Out Date: ${customerInfo['check-out']}</div>
+        </div>
+        <button onclick="checkIn()" class="customer-info-button">Confirm</button>
         `), 1000);});
     //Set occupied table to booking id
 }
@@ -165,7 +183,8 @@ function checkIn() {
     updateOccupied(roomIndex[currentRoom].index + 1, todayData[currentRoom]);
     modal.innerHTML = (`
     <button class="close" onclick="closeModal()">X</button>
-    <div>Task Completed</div>
+    <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+    <p class="loading">Task Completed</p>
     `);
 }
 
@@ -177,19 +196,28 @@ function modalCheckOut() {
         return resolve(getCustomerInfo(customerInfo, roomGuest));
     })
     .then(() => {
-        modal.innerHTML = 'LOADING';
+        modal.innerHTML = (`
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <p class="loading">LOADING...</p>
+        `);
     })
     .then(() => {setTimeout(() => 
         modal.innerHTML = (`
         <button class="close" onclick="closeModal()">X</button>
-        <h3>Room ${customerInfo.room} Booking</h3>
-        <div>Name: </div><div>${customerInfo.name}</div>
-        <div>Address: </div><div>${customerInfo.address}</div>
-        <div>Email: </div><div>${customerInfo.email}</div>
-        <div>Check-In Date: </div><div>${customerInfo['check-in']}</div>
-        <div>Check-Out Date: </div><div>${customerInfo['check-out']}</div>
-        <div>Cost: </div><div>${customerInfo['total-cost']}</div>
-        <button onclick="checkOut()">Confirm</button>
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <div class="customer-info-row">
+            <div>Name: ${customerInfo.name}</div>
+            <div>Address: ${customerInfo.address}</div>
+        </div>
+        <div class="customer-info-row">
+            <div>Email: ${customerInfo.email}</div>
+            <div>Cost: $${customerInfo['total-cost'].toFixed(2)}</div>
+        </div>
+        <div class="customer-info-row">
+            <div>Check-In Date: ${customerInfo['check-in']}</div>
+            <div>Check-Out Date: ${customerInfo['check-out']}</div>
+        </div>
+        <button onclick="checkOut()" class="customer-info-button">Confirm</button>
         `), 1000);});
 }
 
@@ -198,7 +226,8 @@ function checkOut() {
     updateOccupied(roomIndex[currentRoom].index + 1, 0);
     modal.innerHTML = (`
     <button class="close" onclick="closeModal()">X</button>
-    <div>Task Completed</div>
+    <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+    <p class="loading">Task Completed</p>
     `);
 }
 
@@ -207,25 +236,65 @@ function modalBook() {
     const customerInfo = {};
     modal.innerHTML = (`
     <button class="close" onclick="closeModal()">X</button>
+    <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
     <form id="modal_book-form">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address" required>
-        <label for="card-number">Card Number</label>
-        <input type="number" id="card-number" name="card-number" required>
-        <label for="cvc">CVC</label>
-        <input type="number" id="cvc" name="cvc" required>
-        <label for="exp-date">Expiration Date</label>
-        <input type="text" id="exp-date" name="exp-date" required>
+        <label for="first-name-modal">
+            First Name
+            <input type="text" id="first-name-modal" name="first-name-modal" required>
+        </label>
+        <label for="last-name">
+            Last Name
+            <input type="text" id="last-name-modal" name="last-name-modal" required>
+        </label>
+        <label for="phone-modal">
+            Phone Number
+            <input type="tel" id="phone-modal" name="phone-modal" required>
+        </label>
+        <label for="email-modal">
+            Email
+            <input type="email" id="email-modal" name="email-modal" required>
+        </label>
+        <label for="address-modal">
+            Billing Address
+            <input type="text" id="address-modal" name="address-modal" required>
+        </label>
+        <label for="city-modal">
+            City
+            <input type="text" id="city-modal" name="city-modal" required>
+        </label>
+        <label for="zip-modal">
+            Zip Code
+            <input type="number" id="zip-modal" name="zip-modal" required pattern="[0-9]{5}">
+        </label>
+        <label for="state-modal">
+            State
+            <select id="state-modal" name="state-modal"></select>
+        </label>
+        <label for="card-name-modal">
+            Name on Card
+            <input type="text" id="card-name-modal" name="card-name-modal" required>
+        </label>
+        <label for="card-number-modal">
+            Card Number
+            <input type="number" id="card-number-modal" name="card-number-modal" required>
+        </label>
+        <label for="cvc-modal">
+            CVC
+            <input type="text" id="cvc-modal" name="cvc-modal" required minlength="3" maxlength="4" pattern="[0-9]+">
+        </label>
+        <label for="exp-date-modal">
+            Expiration Date
+            <input type="month" id="exp-date-modal" name="exp-date-modal" required>
+        </label>
         <input type="submit">
     </form>
     `);
     document.getElementById("modal_book-form").addEventListener("submit", (e) => {
         getForm(customerInfo, "modal_book-form");
-        modal.innerHTML = 'LOADING';
+        modal.innerHTML = (`
+        <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+        <p class="loading">LOADING...</p>
+        `);
         createCustomerAndBooking(customerInfo);
         e.preventDefault();
     });
@@ -269,10 +338,12 @@ function createCustomerAndBooking(customerInfo) {
         setTimeout(() => updateOccupied(booking.room, booking.id), 1000);
     })
     .then(() => {
-        setTimeout(() => modal.innerHTML = (`
-        <button onclick="closeModal()">X</button>
-        <div>Task Completed</div>
-        `))
+        setTimeout(() => {
+            modal.innerHTML = (`
+            <button class="close" onclick="closeModal()">X</button>
+            <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
+            <p class="loading">Task Completed</p>
+        `)})
     });
 }
 //************************************************************************************************************************************

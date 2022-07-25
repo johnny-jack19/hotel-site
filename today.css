@@ -21,6 +21,17 @@ nav {
     position: fixed;
 }
 
+#logo {
+    width: 9vw;
+    height: 7vw;
+    border: 2px solid black;
+}
+
+#logo img {
+    width: 9vw;
+    height: 7vw;
+}
+
 button {
     height: 2em;
     width: 6em;
@@ -142,7 +153,7 @@ h2 {
 }
 
 .tab {
-    padding-left: 9.5%;
+    padding-left: 10%;
     width: 90%;
     height: 100%;
 }
@@ -168,6 +179,15 @@ h2 {
     padding: 3% 11%;
 }
 
+#overlay {
+    position: fixed;
+    z-index: 2;
+    background-color: black;
+    opacity: .7;
+    height: 100vh;
+    width: 100vw;
+}
+
 #modal {
     width: 50vw;
     height: 50vh;
@@ -179,6 +199,7 @@ h2 {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    z-index: 3;
 }
 
 #modal h3 {
@@ -186,6 +207,7 @@ h2 {
     color: white;
     border-radius: 5px 5px 0 0;
     font-size: 2em;
+    padding: .5em;
     text-align: center;
 }
 
@@ -193,6 +215,48 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    font-size: 1.5em;
+    padding: 1em;
+}
+
+.row div {
+    padding: 0;
+    margin: auto;
+    width: 30%;
+}
+
+.customer-info-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 1.5em;
+    padding: 1em;
+}
+
+.customer-info-row div {
+    width: 45%;
+}
+
+.customer-info-button {
+    align-self: center;
+}
+
+.loading {
+    font-size: 2em;
+    text-align: center;
+    padding-top: 12vh;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 1.5em;
+    padding: 1em;
+}
+
+.button-row button {
+    margin: auto;
 }
 
 #modal.hidden {
@@ -211,6 +275,19 @@ h2 {
     margin-left: 48vw;
 }
 
+#modal_book-form {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#modal_book-form label {
+    margin: .15em auto;
+    width: 30%;
+}
 
 /* Calendar------------------------------------------------------------------------------------------------ */
 
@@ -292,8 +369,8 @@ h2 {
 
 .pad-date {
     border: none;
-    background-color: lightgray;
-    opacity: .5;
+    background-color: rgb(217, 217, 217);
+    opacity: .2;
     box-shadow: 1px 1px 2px black;
 }
 
@@ -335,6 +412,45 @@ h2 {
     font-size: 1.2em;
     width: 75%;
     padding: .5em;
+}
+
+#look-up-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#look-up-form label {
+    width: 25%;
+    font-size: 1.2em
+}
+
+#look-up-data {
+    width: 80%;
+    margin: auto;
+    background-color: rgb(217, 217, 217);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-radius: 8px;
+    padding: 1em;
+}
+
+#look-up-data p {
+    width: 40%;
+    font-size: 1.5em;
+    padding: .5em;
+}
+
+#delete {
+    padding: .5em;
+    background-color: red;
+    width: 10em;
+    height: 3em;
+    font-size: 1.2em;
+    margin-top: 3em;
 }
 
 /* hidden---------------------------------------------------------------------------------------------- */
