@@ -24,11 +24,13 @@ app.post('/billing', async (req, res) => {
     res.status(201).json({results});
 });
 
-//Update customer
+//Update customer (Not used)
 app.patch('/billing/:id', async (req, res) => {
     await db.updateBilling(req.params.id, req.body);
     res.status(201).json({success: true});
 });
+
+//Need a delete billing
 
 //***********************Rooms table***********************************
 //Set rooms to null (call after delete booking) 
@@ -56,7 +58,7 @@ app.delete('/booking/:id', async (req, res) => {
     res.status(200).json({success: true});
 });
 
-//Update booking
+//Update booking (not used)
 app.patch('/booking/:id', async (req, res) => {
     await db.processBooking(req.params.id);
     res.status(201).json({success: true});
@@ -110,6 +112,12 @@ app.get('/occupied', async (req, res) => {
 //Get Booking and Customer info
 app.get('/customer-info/:id', async (req, res) => {
     const results = await db.getBookingAndCustomer(req.params.id);
+    res.status(200).json({results});
+});
+
+//Get Booking and Customer info by field
+app.get('/customer-info/:field/:value', async (req, res) => {
+    const results = await db.getLookUp(req.params.field, req.params.value);
     res.status(200).json({results});
 });
 

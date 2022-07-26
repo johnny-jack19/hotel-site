@@ -1,3 +1,4 @@
+/* ----------------------------------------------General------------------------------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +11,68 @@ body {
     overflow-x: hidden;
 }
 
+button {
+    height: 2em;
+    width: 6em;
+    color: white;
+    font-size: 1em;
+    background-color: rgb(40, 75, 99);
+    border-radius: 20px;
+    margin: auto 5em;
+    cursor: pointer;
+}
+form {
+    background-color: rgb(217, 217, 217);
+    width: 70%;
+    font-size: 1.2em;
+    padding: .5em;
+    margin: 1em auto 1em auto;
+    border-radius: 10px;
+}
+fieldset {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+}
+
+input {
+    height: 1.5em;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    margin: .5em 5%;
+}
+
+h2 {
+    text-align: center;
+    background-color: rgb(53, 53, 53);
+    width: 110%;
+    margin-left: -5.7%;
+    margin-bottom: .5em;
+    padding: 1em 0;
+    color: white;
+    font-size: xx-large;
+}
+
+
+.tab {
+    padding-left: 10%;
+    width: 90%;
+    height: 100%;
+}
+/* ------------------------------------------------Nav--------------------------------------------- */
+.nav-tab {
+    font-size: x-large;
+    color: white;
+    width: 100%;
+    padding-top: 40%;
+    flex-grow: 1;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
 nav {
     background-color: rgb(40, 75, 99);
     width: 9vw;
@@ -32,36 +95,7 @@ nav {
     height: 7vw;
 }
 
-button {
-    height: 2em;
-    width: 6em;
-    color: white;
-    font-size: 1em;
-    background-color: rgb(40, 75, 99);
-    border-radius: 20px;
-    margin: auto 5em;
-}
-
-form {
-    background-color: rgb(217, 217, 217);
-    width: 70%;
-    font-size: 1.2em;
-    padding: .5em;
-    margin: 1em auto 1em auto;
-    border-radius: 10px;
-}
-
-fieldset {
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    border: none;
-}
-
-input {
-    height: 1.5em;
-}
-
+/* ------------------------------------------Booking----------------------------------------------- */
 .form-2 {
     width: 40%;
 }
@@ -82,6 +116,7 @@ input {
     font-size: 1em;
     padding: .5em;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 input[type="radio"] {
@@ -103,18 +138,13 @@ input[type="submit"] {
     width: 7em;
     margin: .5em 5%;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #avail-form {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-}
-
-.room-card h3 {
-    background-color: rgb(53, 53, 53);
-    border-radius: 20px;
-    padding: .2em;
 }
 
 #booking-form {
@@ -125,38 +155,58 @@ input[type="submit"] {
     transform: translateY(-1em);
 }
 
-label {
+.booking-info-modal {
     display: flex;
-    flex-direction: column;
-    margin: .5em 5%;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-h2 {
-    text-align: center;
-    background-color: rgb(53, 53, 53);
-    width: 110%;
-    margin-left: -5.7%;
-    margin-bottom: .5em;
-    padding: 1em 0;
-    color: white;
-    font-size: xx-large;
-}
-
-.nav-tab {
-    font-size: x-large;
-    color: white;
-    width: 100%;
-    padding-top: 40%;
+.booking-info-modal div {
+    width: 30%;
+    font-size: 1.2em;
+    padding: .5em;
+    border: 1px solid black;
     flex-grow: 1;
+}
+
+.check-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.check-row div {
+    flex-grow: 1;
+    width: 22%;
+    font-size: 1.2em;
+    padding: .5em;
     text-align: center;
     border: 1px solid black;
 }
 
-.tab {
-    padding-left: 10%;
-    width: 90%;
-    height: 100%;
+#days-selected {
+    background-color: rgb(217, 217, 217);
+    width: 70%;
+    font-size: 1.2em;
+    padding: .5em;
+    margin: 1em auto 1em auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: .75em;
+    padding-bottom: .75em;
 }
+
+#days-selected div {
+    font-size: 1.2em;
+}
+
+/* --------------------------------------------Today----------------------------------------------- */
+.room-card h3 {
+    background-color: rgb(53, 53, 53);
+    border-radius: 20px;
+    padding: .2em;
+}
+
 #today {
     width: 88%;
 }
@@ -177,8 +227,10 @@ h2 {
     background-color: rgb(40, 75, 99);
     text-align: center;
     padding: 3% 11%;
+    cursor: pointer;
 }
 
+/* --------------------------------------------Modal----------------------------------------------- */
 #overlay {
     position: fixed;
     z-index: 2;
@@ -190,7 +242,7 @@ h2 {
 
 #modal {
     width: 50vw;
-    height: 50vh;
+    min-height: 50vh;
     background-color: rgb(217, 217, 217);
     margin: auto;
     position: fixed;
@@ -289,8 +341,7 @@ h2 {
     width: 30%;
 }
 
-/* Calendar------------------------------------------------------------------------------------------------ */
-
+/* -------------------------------------------Calendar--------------------------------------------- */
 #calendar {
     width: 88%;
 }
@@ -378,42 +429,7 @@ h2 {
     display: none;
 }
 
-#contact-container {
-    display: flex;
-    margin: auto;
-    width: 90%;
-    height: 90%;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.contact {
-    background-color: rgb(217, 217, 217);
-    width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1%;
-    padding: 1em;
-    justify-content: space-around;
-    box-shadow: 5px 5px 10px black;
-    border-radius: 10px;
-}
-
-.contact-title {
-    text-align: center;
-    font-size: 1.5em;
-    width: 75%;
-    padding: .3em;
-    font-style: italic;
-    font-weight: 600;
-}
-.contact-name {
-    text-align: center;
-    font-size: 1.2em;
-    width: 75%;
-    padding: .5em;
-}
-
+/* --------------------------------------------Look Up--------------------------------------------- */
 #look-up-form {
     display: flex;
     flex-wrap: wrap;
@@ -452,6 +468,43 @@ h2 {
     font-size: 1.2em;
     margin-top: 3em;
 }
+/* --------------------------------------------Contacts-------------------------------------------- */
+#contact-container {
+    display: flex;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contact {
+    background-color: rgb(217, 217, 217);
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1%;
+    padding: 1em;
+    justify-content: space-around;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
+}
+
+.contact-title {
+    text-align: center;
+    font-size: 1.5em;
+    width: 75%;
+    padding: .3em;
+    font-style: italic;
+    font-weight: 600;
+}
+.contact-name {
+    text-align: center;
+    font-size: 1.2em;
+    width: 75%;
+    padding: .5em;
+}
+
 
 /* hidden---------------------------------------------------------------------------------------------- */
 .hidden {

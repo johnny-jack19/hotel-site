@@ -1,41 +1,4 @@
-//Tabs---------------------------------------------------------------------------------------------
-const todayTab = document.getElementById('today-tab');
-const todayPage = document.getElementById('today');
-todayTab.addEventListener('click', (e) => {
-    openPage.classList.add('hidden');
-    todayPage.classList.remove('hidden');
-    openPage = todayPage;
-});
-const calendarTab = document.getElementById('calendar-tab');
-const calendarPage = document.getElementById('calendar');
-calendarTab.addEventListener('click', (e) => {
-    openPage.classList.add('hidden');
-    calendarPage.classList.remove('hidden');
-    openPage = calendarPage
-});
-const bookingTab = document.getElementById('booking-tab');
-const bookingPage = document.getElementById('booking');
-bookingTab.addEventListener('click', (e) => {
-    openPage.classList.add('hidden');
-    bookingPage.classList.remove('hidden');
-    openPage = bookingPage
-});
-const lookUpTab = document.getElementById('lookup-tab');
-const lookUpPage = document.getElementById('look-up');
-lookUpTab.addEventListener('click', (e) => {
-    openPage.classList.add('hidden');
-    lookUpPage.classList.remove('hidden');
-    openPage = lookUpPage
-});
-const contactsTab = document.getElementById('contacts-tab');
-const contactsPage = document.getElementById('contacts');
-contactsTab.addEventListener('click', (e) => {
-    openPage.classList.add('hidden');
-    contactsPage.classList.remove('hidden');
-    openPage = contactsPage
-});
-let openPage = todayPage;
-
+//********************************************Today************************************************
 //Today varibles-----------------------------------------------------------------------------------
 const roomIndex = {'room-1': {index: 0,type: 'single-queen'},'room-2': {index: 1,type: 'single-queen'},'room-3': {index: 2,type: 'double-queen'},
 'room-4': {index: 3,type: 'double-queen'},'room-5': {index: 4,type: 'single-king'},'room-6': {index: 5,type: 'single-king'}};
@@ -47,6 +10,12 @@ tomorrow.setDate(today.getDate() + 1);
 let currentRoom = null;
 const roomCards = document.getElementsByClassName('room-card');
 const overlay = document.getElementById('overlay');
+let states = 'Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming'
+let myStates = states.split(',');
+for (state of myStates) {
+    let stateOption = `<option value="${state}">${state}</option>`
+    document.getElementById('state').innerHTML += stateOption;
+}
 
 //Today calls--------------------------------------------------------------------------------------
 updateToday();
@@ -87,8 +56,7 @@ function addToRoomCards() {
         });
     }
 }
-//Today functions
-//Modal > Room-------------------------------------------------------------------------------------(Needs row inspect)
+//Modal > Room-------------------------------------------------------------------------------------
 function expandCard() {
     overlay.classList.remove('hidden');
     currentRoom = this.id;
@@ -163,7 +131,7 @@ function modalCheckIn() {
         <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
         <div class="customer-info-row">
             <div>Name: ${customerInfo.name}</div>
-            <div>Address: ${customerInfo.address}</div>
+            <div>Phone: ${customerInfo.phone}</div>
         </div>
         <div class="customer-info-row">
             <div>Email: ${customerInfo.email}</div>
@@ -175,7 +143,6 @@ function modalCheckIn() {
         </div>
         <button onclick="checkIn()" class="customer-info-button">Confirm</button>
         `), 1000);});
-    //Set occupied table to booking id
 }
 
 //Modal > Room > Check-in > Confirm
@@ -207,7 +174,7 @@ function modalCheckOut() {
         <h3>Room ${roomIndex[currentRoom].index + 1}</h3>
         <div class="customer-info-row">
             <div>Name: ${customerInfo.name}</div>
-            <div>Address: ${customerInfo.address}</div>
+            <div>Phone: ${customerInfo.phone}</div>
         </div>
         <div class="customer-info-row">
             <div>Email: ${customerInfo.email}</div>
@@ -240,15 +207,15 @@ function modalBook() {
     <form id="modal_book-form">
         <label for="first-name-modal">
             First Name
-            <input type="text" id="first-name-modal" name="first-name-modal" required>
+            <input type="text" id="first-name-modal" name="first-name-modal" pattern="[^0-9]{2,}" required>
         </label>
-        <label for="last-name">
+        <label for="last-name-modal">
             Last Name
-            <input type="text" id="last-name-modal" name="last-name-modal" required>
+            <input type="text" id="last-name-modal" name="last-name-modal" pattern="[^0-9]{2,}" required>
         </label>
         <label for="phone-modal">
             Phone Number
-            <input type="tel" id="phone-modal" name="phone-modal" required>
+            <input type="tel" id="phone-modal" name="phone-modal" minlength="10" maxlength="11" required>
         </label>
         <label for="email-modal">
             Email
@@ -264,19 +231,19 @@ function modalBook() {
         </label>
         <label for="zip-modal">
             Zip Code
-            <input type="number" id="zip-modal" name="zip-modal" required pattern="[0-9]{5}">
+            <input type="text" id="zip-modal" name="zip-modal" required pattern="[0-9]{5}">
         </label>
         <label for="state-modal">
             State
-            <select id="state-modal" name="state-modal"></select>
+            <select id="state-modal" name="state-modal" required></select>
         </label>
         <label for="card-name-modal">
             Name on Card
-            <input type="text" id="card-name-modal" name="card-name-modal" required>
+            <input type="text" id="card-name-modal" name="card-name-modal" pattern="[^0-9]{2,}" required>
         </label>
         <label for="card-number-modal">
             Card Number
-            <input type="number" id="card-number-modal" name="card-number-modal" required>
+            <input type="text" id="card-number-modal" name="card-number-modal" pattern="[0-9]{15,}" required>
         </label>
         <label for="cvc-modal">
             CVC
@@ -289,6 +256,10 @@ function modalBook() {
         <input type="submit">
     </form>
     `);
+    for (state of myStates) {
+        let stateOption = `<option value="${state}">${state}</option>`
+        document.getElementById('state-modal').innerHTML += stateOption;
+    }
     document.getElementById("modal_book-form").addEventListener("submit", (e) => {
         getForm(customerInfo, "modal_book-form");
         modal.innerHTML = (`
@@ -303,22 +274,28 @@ function modalBook() {
 //Modal > Room > Book > Confirm
 function createCustomerAndBooking(customerInfo) {
     const billing = {
-        'name': customerInfo.name,
-        'email': customerInfo.email,
-        'address': customerInfo.address,
-        'card-number': customerInfo['card-number'],
-        'cvc': customerInfo.cvc,
-        'exp-date': customerInfo['exp-date']
+        'first-name': customerInfo['first-name-modal'],
+        'last-name': customerInfo['last-name-modal'],
+        'email': customerInfo['email-modal'],
+        'phone': customerInfo['phone-modal'],
+        'address': customerInfo['address-modal'],
+        'city': customerInfo['city-modal'],
+        'state': customerInfo['state-modal'],
+        'zip': customerInfo['zip-modal'],
+        'name-on-card': customerInfo['card-name-modal'],
+        'card-number': customerInfo['card-number-modal'],
+        'cvc': customerInfo['cvc-modal'],
+        'exp-date': customerInfo['exp-date-modal']
     }
 
     const booking = {
-        'name': customerInfo.name,
+        'name': `${customerInfo['first-name-modal']} ${customerInfo['last-name-modal']}`,
         'check-in': formatDay(today),
         'check-out': formatDay(tomorrow),
         'number-of-days': 1,
         'room': roomIndex[currentRoom].index + 1,
-        'room-cost': todayData[roomIndex[currentRoom].type],
-        'total-cost': todayData[roomIndex[currentRoom].type]
+        'room-cost': todayData[roomIndex[currentRoom].type].toFixed(2),
+        'total-cost': (todayData[roomIndex[currentRoom].type] * 1.06 + 50).toFixed(2)
     }
 
     return new Promise((resolve, reject) => {
@@ -346,7 +323,7 @@ function createCustomerAndBooking(customerInfo) {
         `)})
     });
 }
-//************************************************************************************************************************************
+//*********************************************************Calendar*******************************************************************
 let calendarVacanies = [];
 const calendarDates = document.getElementById('calendar_dates');
 const calendarHeader = document.getElementById('calendar_header__month-year');
@@ -411,11 +388,274 @@ function changeMonth(input) {
     calendarHeader.innerText = months[monthViewed][0];
 }
 
-// calendarDates.innerHTML = '';
-// k = 0;
-// for (let m = 0; m < 30; m++) {
-//     makeCal(`month-${m}`, months[m][1], months[m][2])
-// }
-// document.getElementById(`month-${monthViewed}`).classList.remove('hidden');
+//*******************************************Booking***********************************************
+let bookingDays = {};
+let bookingInfo = {};
+let myRooms;
+let openRooms;
+let bedRooms = {};
+let price = {
+    'single-queen': 0,
+    'double-queen': 0,
+    'single-king': 0
+};
+const bookingCheckIn = document.getElementById('check-in');
+const bookingCheckOut = document.getElementById('check-out');
+bookingCheckIn.min = new Date().toLocaleDateString('en-ca');
 
-//*************************************************************************************************************************
+bookingCheckIn.addEventListener('change', (e) => {
+    let checkInValue = new Date(bookingCheckIn.value)
+    bookingCheckOut.disabled = false;
+    bookingCheckOut.min = new Date(checkInValue.getTime() + 126400000).toLocaleDateString('en-ca');
+});
+document.getElementById("avail-form").addEventListener("submit", (e) => {
+    getAvailability();
+    e.preventDefault();
+});
+
+function getAvailability() {
+    document.getElementById('single-queen-label').classList.remove('hidden');
+    document.getElementById('double-queen-label').classList.remove('hidden');
+    document.getElementById('single-king-label').classList.remove('hidden');
+    document.getElementById('single-queen').disabled = false;
+    document.getElementById('double-queen').disabled = false;
+    document.getElementById('single-king').disabled = false;
+    let formData = new FormData(document.getElementById("avail-form"));
+    for ([key, value] of formData) {
+        bookingDays[key] = value;
+    }
+    document.getElementById('days-selected').innerHTML = (`
+        <div>Check-In: ${bookingDays['check-in']}</div>
+        <div>Check-Out: ${bookingDays['check-out']}</div>
+    `)
+    document.getElementById('booking-submit').disabled = false;
+    document.getElementById('booking-submit').classList.remove('hidden');
+    document.getElementById("avail-form").reset();
+    return new Promise((resolve, reject) => {
+        return resolve(checkRoomRange());
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(sortRooms()), 1000);
+        });
+    })
+    .then(() => {
+        setTimeout(() => {
+            disableRooms(), 1000
+        });
+    });
+}
+
+function disableRooms() {
+    if (!bedRooms['single-queen']) {
+        document.getElementById('single-queen-label').classList.add('hidden');
+        document.getElementById('single-queen').disabled = true;
+    }
+    if (!bedRooms['double-queen']) {
+        document.getElementById('double-queen-label').classList.add('hidden');
+        document.getElementById('double-queen').disabled = true;
+    }
+    if (!bedRooms['single-king']) {
+        document.getElementById('single-king-label').classList.add('hidden');
+        document.getElementById('single-king').disabled = true;
+    }
+}
+
+function checkRoomRange() {
+    myRooms = [];
+    openRooms = {
+        'room-1': true,
+        'room-2': true,
+        'room-3': true,
+        'room-4': true,
+        'room-5': true,
+        'room-6': true
+    };
+    checkRooms(myRooms, bookingDays['check-in'], formatDay(new Date(bookingDays['check-out'])));
+}
+
+function sortRooms() {
+    price = {'single-queen': 0, 'double-queen': 0, 'single-king': 0};
+    for (days of myRooms) {
+        for (let i = 1; i < 7; i++) {
+            if (days[`room-${i}`] != 0) {
+                openRooms[`room-${i}`] = false;
+            }
+        }
+        price['single-queen'] += days['single-queen'];
+        price['double-queen'] += days['double-queen'];
+        price['single-king'] += days['single-king'];
+    }
+    bedRooms['single-queen'] = (openRooms['room-1'] || openRooms['room-2']);
+    bedRooms['double-queen'] = (openRooms['room-3'] || openRooms['room-4']);
+    bedRooms['single-king'] = (openRooms['room-5'] || openRooms['room-6']);
+}
+
+function addToBooking() {
+    if (bookingInfo['bed'] === 'single-queen') {
+        bookingInfo['room-cost'] = price['single-queen'];
+        if (openRooms['room-1']) {
+            bookingInfo.room = 1;
+        } else {
+            bookingInfo.room = 2;
+        }
+    } else if (bookingInfo['bed'] === 'double-queen') {
+        bookingInfo['room-cost'] = price['double-queen'];
+        if (openRooms['room-3']) {
+            bookingInfo.room = 3;
+        } else {
+            bookingInfo.room = 4;
+        }
+    } else {
+        bookingInfo['room-cost'] = price['single-king'];
+        if (openRooms['room-5']) {
+            bookingInfo.room = 5;
+        } else {
+            bookingInfo.room = 6;
+        }
+    }
+}
+
+function confirmBooking() {
+    getForm(bookingInfo, "booking-form");
+    addToBooking();
+    modal.innerHTML = (`
+    <button class="close" onclick="closeModal()">X</button>
+    <h3>Booking</h3>
+    <div class="booking-info-modal">
+        <div>First Name: ${bookingInfo['first-name']}</div>
+        <div>Last Name: ${bookingInfo['last-name']}</div>
+        <div>Phone Number: ${bookingInfo['phone']}</div>
+        <div>Email: ${bookingInfo['email']}</div>
+        <div>Address: ${bookingInfo['address']}</div>
+        <div>City: ${bookingInfo['city']}</div>
+        <div>Zip Code: ${bookingInfo['zip']}</div>
+        <div>State: ${bookingInfo['state']}</div>
+        <div>Name on Card: ${bookingInfo['card-name']}</div>
+        <div>Card Number: ${bookingInfo['card-number']}</div>
+        <div>CVC: ${bookingInfo['cvc']}</div>
+        <div>Expiration Date: ${bookingInfo['exp-date']}</div>
+    </div>
+    <div class="check-row">
+        <div>Check-In: ${bookingDays['check-in']}</div>
+        <div>Check-Out: ${bookingDays['check-out']}</div>
+    </div>
+    <div class="check-row">
+        <div>Room Type: ${bookingInfo['bed']}</div>
+        <div>Room: ${bookingInfo.room}</div>
+    </div>
+    <div class="check-row">
+        <div>Room Cost: $${bookingInfo['room-cost'].toFixed(2)}</div>
+        <div>Taxes: $${(bookingInfo['room-cost'] * .06).toFixed(2)}</div>
+        <div>Cleaning Fee: $50.00</div>
+        <div>Total Cost: $${(bookingInfo['room-cost'] * 1.06 + 50).toFixed(2)}</div>
+    </div>
+    <div class="button-row">
+        <button onclick="createNewBooking()">Confirm</button>
+        <button onclick="closeModal()">Cancel</button>
+    <div>
+    `)
+    overlay.classList.remove('hidden');
+    modal.classList.remove('hidden');
+}
+
+function createNewBooking() {
+    const billing = {
+        'first-name': bookingInfo['first-name'],
+        'last-name': bookingInfo['last-name'],
+        'email': bookingInfo['email'],
+        'phone': bookingInfo['phone'],
+        'address': bookingInfo['address'],
+        'city': bookingInfo['city'],
+        'state': bookingInfo['state'],
+        'zip': bookingInfo['zip'],
+        'name-on-card': bookingInfo['card-name'],
+        'card-number': bookingInfo['card-number'],
+        'cvc': bookingInfo['cvc'],
+        'exp-date': bookingInfo['exp-date']
+    }
+
+    const booking = {
+        'name': `${bookingInfo['first-name']} ${bookingInfo['last-name']}`,
+        'check-in': bookingDays['check-in'],
+        'check-out': bookingDays['check-out'],
+        'number-of-days': ((new Date(bookingDays['check-out']) - new Date(bookingDays['check-in'])) / 1000 / 60 / 60 / 24),
+        'room': bookingInfo.room,
+        'room-cost': bookingInfo['room-cost'],
+        'total-cost': (bookingInfo['room-cost'] * 1.06 + 50).toFixed(2)
+    }
+
+    return new Promise((resolve, reject) => {
+        return resolve(makeNewCustomer(booking, billing));
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(makeNewBooking(booking)), 1000);
+        });
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(addBookingToRooms(`room-${booking.room}`, booking.id, booking['check-in'], formatDay(new Date(booking['check-out'])))), 1000);
+        })
+    })
+    .then(() => {
+        setTimeout(() => {
+            modal.innerHTML = (`
+            <button class="close" onclick="closeModal()">X</button>
+            <h3>Booking</h3>
+            <p class="loading">Task Completed</p>
+        `)})
+    });
+}
+
+//********************************************Look Up**********************************************
+document.getElementById("look-up-form").addEventListener("submit", (e) => {
+    customerLookUp();
+    e.preventDefault();
+});
+let lookUpStore = {};
+function customerLookUp(){
+    const bookingField = document.getElementById('booking-field');
+    const bookingValue = document.getElementById('booking-value');
+    return new Promise((resolve, reject) => {
+        return resolve(getLookUp(lookUpStore, bookingField.value, bookingValue.value));
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(testLookUp(lookUpStore)), 1000);
+        });
+    });
+}
+
+function testLookUp(lookUpStore) {
+    if (lookUpStore.length > 1) {
+        modal.innerHTML = (`
+            <button class="close" onclick="closeModal()">X</button>
+            <h3>Look Up Failed</h3>
+            <p class="loading">Try another field</p>
+            </div>
+        `);
+        overlay.classList.remove('hidden');
+        modal.classList.remove('hidden');
+    } else {
+        document.getElementById('look-up-data').innerHTML = (`
+            <p>First Name: ${lookUpStore['first-name']}</p>
+            <p>Last Name: ${lookUpStore['last-name']}</p>
+            <p>Check-In: ${lookUpStore['check-in']}</p>
+            <p>Check-Out: ${lookUpStore['check-out']}</p>
+            <p>Room: ${lookUpStore['room']}</p>
+            <p>Total Cost: $${lookUpStore['total-cost'].toFixed(2)}</p>
+            <p>Phone: ${lookUpStore['phone']}</p>
+            <p>Email: ${lookUpStore['email']}</p>
+            <p>Address: ${lookUpStore['address']}</p>
+            <p>City: ${lookUpStore['city']}</p>
+            <p>Zip Code: ${lookUpStore['zip']}</p>
+            <p>State: ${lookUpStore['state']}</p>
+            <p>Name on Card: ${lookUpStore['card-name']}</p>
+            <p>Card Number: ${lookUpStore['card-number']}</p>
+            <p>CVC: ${lookUpStore['cvc']}</p>
+            <p>Expiration Date: ${lookUpStore['exp-date']}</p>
+            <button id="delete">Delete Entry</button>
+        `)
+    }
+}

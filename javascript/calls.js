@@ -229,3 +229,25 @@ function getCustomerInfo(store, id) {
         console.error('Error:', error);
     });
 }
+
+//Get customer info (billing and booking)
+function getLookUp(store, field, value) {
+    fetch(url + `/customer-info/${field}/${value}`,
+    {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        store['entries'] = data.results.length;
+        for (key in data.results[0]) {
+            store[key] = data.results[0][key];
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}

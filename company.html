@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="today.css">
+    <link rel="stylesheet" href="./styles/company.css">
     <title>Document</title>
 </head>
 <body>
@@ -19,7 +19,6 @@
         <div class="nav-tab" id="lookup-tab">Look Up</div>
         <div class="nav-tab" id="contacts-tab">Contacts</div>
     </nav>
-    <!--<h1>Hotel</h1>-->
     <!-- **********************************************Today******************************************* -->
     <div id="today" class="tab">
         <h2>Today</h2>
@@ -59,17 +58,21 @@
     <div id="booking" class="tab hidden">
         <h2>Booking</h2>
         <form id="avail-form">
-            <label for="check-in-test">
+            <label for="check-in">
                 Check In
-                <input type="date" id="check-in-test" name="check-in-test" required>
+                <input type="date" id="check-in" name="check-in" required>
             </label>
-            <label for="check-out-test">
+            <label for="check-out">
                 Check Out
-                <input type="date" id="check-out-test" name="check-out-test" required>
+                <input type="date" id="check-out" name="check-out" disabled required>
             </label>
             <input type="submit">
         </form>
-        <form id="booking-form">
+        <div id="days-selected">
+            <div>Check-In: --------</div>
+            <div>Check-Out: --------</div>
+        </div>
+        <form id="booking-form" onsubmit="confirmBooking();return false">
             <fieldset>
                 <input type="radio" id="single-queen" value="single-queen" name="bed">
                 <label for="single-queen" class="form-3" id="single-queen-label">
@@ -86,15 +89,15 @@
             </fieldset>
             <label for="first-name" class="form-2">
                 First Name
-                <input type="text" id="first-name" name="first-name" required>
+                <input type="text" id="first-name" name="first-name" pattern="[^0-9]{2,}" required>
                 </label>
                 <label for="last-name" class="form-2">
                     Last Name
-                    <input type="text" id="last-name" name="last-name" required>
+                    <input type="text" id="last-name" name="last-name" pattern="[^0-9]{2,}" required>
                 </label>
                 <label for="phone" class="form-2">
                     Phone Number
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" minlength="10" maxlength="11" required>
                 </label>
                 <label for="email" class="form-2">
                     Email
@@ -110,19 +113,19 @@
                 </label>
                 <label for="zip" class="form-2">
                     Zip Code
-                    <input type="number" id="zip" name="zip" required pattern="[0-9]{5}">
+                    <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
                 </label>
                 <label for="state" class="form-2">
                     State
-                    <select id="state" name="state"></select>
+                    <select id="state" name="state" required></select>
                 </label>
                 <label for="card-name" class="form-2">
                     Name on Card
-                    <input type="text" id="card-name" name="card-name" required>
+                    <input type="text" id="card-name" name="card-name" pattern="[^0-9]{2,}" required>
                 </label>
                 <label for="card-number" class="form-2">
                     Card Number
-                    <input type="number" id="card-number" name="card-number" required>
+                    <input type="text" id="card-number" name="card-number" pattern="[0-9]{15,}" required>
                 </label>
                 <label for="cvc" class="form-6">
                     CVC
@@ -132,7 +135,7 @@
                     Expiration Date
                     <input type="month" id="exp-date" name="exp-date" required>
                 </label>
-            <input type="submit">
+            <input type="submit" id="booking-submit" class="hidden">
         </form>
     </div>
     <!-- *****************************************Look up************************************************ -->
@@ -143,10 +146,11 @@
                 Search field
                 <select name="booking-field" id="booking-field">
                     <option value="id">Booking ID</option>
+                    <option value="customer-id">Customer ID</option>
+                    <option value="email">Email</option>
                     <option value="name">Name</option>
-                    <option value="customer">Customer ID</option>
-                <option value="check-in">Check In</option>
-            </select>
+                    <option value="phone">Phone</option>
+                </select>
             </label>
             <label for="booking-value">
                 Value
@@ -157,6 +161,10 @@
         <div id="look-up-data">
             <p>First Name:</p>
             <p>Last Name:</p>
+            <p>Check-In:</p>
+            <p>Check-Out:</p>
+            <p>Room:</p>
+            <p>Total Cost:</p>
             <p>Phone:</p>
             <p>Email:</p>
             <p>Address:</p>
@@ -225,8 +233,9 @@
         </div>
     </div>
     <!-- *****************************************Scripts************************************************ -->
-    <script src="./helper.js"></script>
-    <script src="./calls.js"></script>
-    <script src="./today.js"></script>
+    <script src="./javascript/tabs.js"></script>
+    <script src="./javascript/helper.js"></script>
+    <script src="./javascript/calls.js"></script>
+    <script src="./javascript/company.js"></script>
 </body>
 </html>

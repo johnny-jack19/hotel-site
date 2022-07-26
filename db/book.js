@@ -73,8 +73,12 @@ function getOccupied() {
 
 function getBookingAndCustomer(id) {
     return knex('booking').where('id', id).join('billing', 'booking.customer-id', '=', 'billing.customer-id')
-    .select('billing.name', 'billing.email', 'billing.address', 'billing.customer-id', 'booking.number-of-days',
-            'booking.id', 'booking.room', 'booking.check-in', 'booking.check-out', 'booking.total-cost');
+    .select('*');
+}
+
+function getLookUp(field, value) {
+    return knex('booking').where(field, value).join('billing', 'booking.customer-id', '=', 'billing.customer-id')
+    .select('*');
 }
 
 module.exports = {
@@ -83,5 +87,6 @@ module.exports = {
     addBookingToRooms, deleteBookingFromRooms,
     getBooking, getCalendar, processBooking,
     getDay, getDayRange, getOccupied,
-    getBookingAndCustomer, updateOccupied
+    getBookingAndCustomer, updateOccupied,
+    getLookUp
 };
