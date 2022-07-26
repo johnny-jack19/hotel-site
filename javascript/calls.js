@@ -20,16 +20,14 @@ function makeNewCustomer(store, customer) {
     });
 }
 
-//Yet to be used
-function updateCustomer(id, customer) {
+function delBilling(id) {
     fetch(url + '/billing/' + id,
     {
-        method: 'PATCH',
+        method: 'DELETE',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(customer)
+        }
     })
     .then(res => res.json())
     .then(data => {
@@ -61,7 +59,6 @@ function makeNewBooking(booking) {
     });
 }
 
-//Yet to be used
 function delBooking(id) {
     fetch(url + '/booking/' + id,
     {
@@ -83,6 +80,24 @@ function delBooking(id) {
 //--------------------------------------------Rooms------------------------------------------------
 function addBookingToRooms(room, booking, startDay, endDay) {
     fetch(url + `/rooms/${room}/${booking}/${startDay}/${endDay}`,
+    {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function deleteBookingFromRooms(room, booking) {
+    fetch(url + `/rooms/${room}/${booking}`,
     {
         method: 'PATCH',
         mode: 'cors',

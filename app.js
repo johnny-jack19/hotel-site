@@ -24,13 +24,10 @@ app.post('/billing', async (req, res) => {
     res.status(201).json({results});
 });
 
-//Update customer (Not used)
-app.patch('/billing/:id', async (req, res) => {
-    await db.updateBilling(req.params.id, req.body);
-    res.status(201).json({success: true});
+app.delete('/billing/:id', async (req, res) => {
+    await db.deleteBilling(req.params.id);
+    res.status(200).json({success: true});
 });
-
-//Need a delete billing
 
 //***********************Rooms table***********************************
 //Set rooms to null (call after delete booking) 

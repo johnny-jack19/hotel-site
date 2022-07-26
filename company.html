@@ -146,7 +146,7 @@
                 Search field
                 <select name="booking-field" id="booking-field">
                     <option value="id">Booking ID</option>
-                    <option value="customer-id">Customer ID</option>
+                    <option value="booking.customer-id">Customer ID</option>
                     <option value="email">Email</option>
                     <option value="name">Name</option>
                     <option value="phone">Phone</option>
@@ -175,7 +175,7 @@
             <p>Card Number:</p>
             <p>CVC:</p>
             <p>Expiration Date:</p>
-            <button id="delete">Delete Entry</button>
+            <button id="delete" class="delete hidden" onclick="deleteEntry()" disabled>Delete Entry</button>
         </div>
     </div>
     <!-- *****************************************Contacts************************************************ -->

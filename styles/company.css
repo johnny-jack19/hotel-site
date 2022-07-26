@@ -460,13 +460,18 @@ input[type="submit"] {
     padding: .5em;
 }
 
-#delete {
+.delete {
     padding: .5em;
     background-color: red;
     width: 10em;
     height: 3em;
     font-size: 1.2em;
     margin-top: 3em;
+    align-self: center;
+}
+
+.warning {
+    background-color: red;
 }
 /* --------------------------------------------Contacts-------------------------------------------- */
 #contact-container {

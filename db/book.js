@@ -10,8 +10,8 @@ function  makeCustomer(customer) {
     return knex('billing').insert(customer);
 }
 
-function updateBilling(id, customer) {
-    return knex('billing').where('customer-id', id).update(customer);
+function deleteBilling(id) {
+    return knex('billing').where('customer-id', id).del();
 }
 
 //Booking
@@ -83,7 +83,7 @@ function getLookUp(field, value) {
 
 module.exports = {
     createDay, makeCustomer, makeBooking,
-    deleteBooking, updateBilling, getCustomer,
+    deleteBooking, deleteBilling, getCustomer,
     addBookingToRooms, deleteBookingFromRooms,
     getBooking, getCalendar, processBooking,
     getDay, getDayRange, getOccupied,

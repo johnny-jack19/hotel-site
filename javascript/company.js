@@ -628,7 +628,7 @@ function customerLookUp(){
 }
 
 function testLookUp(lookUpStore) {
-    if (lookUpStore.length > 1) {
+    if (lookUpStore.entries != 1) {
         modal.innerHTML = (`
             <button class="close" onclick="closeModal()">X</button>
             <h3>Look Up Failed</h3>
@@ -651,11 +651,65 @@ function testLookUp(lookUpStore) {
             <p>City: ${lookUpStore['city']}</p>
             <p>Zip Code: ${lookUpStore['zip']}</p>
             <p>State: ${lookUpStore['state']}</p>
-            <p>Name on Card: ${lookUpStore['card-name']}</p>
+            <p>Name on Card: ${lookUpStore['name-on-card']}</p>
             <p>Card Number: ${lookUpStore['card-number']}</p>
             <p>CVC: ${lookUpStore['cvc']}</p>
             <p>Expiration Date: ${lookUpStore['exp-date']}</p>
-            <button id="delete">Delete Entry</button>
+            <button id="delete" onclick="deleteEntry()" class="delete">Delete Entry</button>
         `)
     }
+}
+
+function deleteEntry() {
+    modal.innerHTML = (`
+        <button class="close" onclick="closeModal()">X</button>
+        <h3 class="warning">WARNING!</h3>
+        <p class="loading">This action cannot be undone!</p>
+        <button class="delete" onclick="confirmDeletion()">Delete Entry</button>
+        </div>
+    `);
+    overlay.classList.remove('hidden');
+    modal.classList.remove('hidden');
+}
+
+function confirmDeletion() {
+    return new Promise((resolve, reject) => {
+        return resolve(deleteBookingFromRooms(`room-${lookUpStore['room']}`, lookUpStore['id']));
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(delBooking(lookUpStore['id'])), 1000);
+        });
+    })
+    .then(() => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(delBilling(lookUpStore['customer-id'])), 1000);
+        });
+    })
+    .then(() => {
+        setTimeout(() => {
+            modal.innerHTML = (`
+            <button class="close" onclick="closeModal()">X</button>
+            <h3>Booking Deleted</h3>
+            <p class="loading">Task Completed</p>
+        `)});
+        document.getElementById('look-up-data').innerHTML = (`
+            <p>First Name:</p>
+            <p>Last Name:</p>
+            <p>Check-In:</p>
+            <p>Check-Out:</p>
+            <p>Room:</p>
+            <p>Total Cost:</p>
+            <p>Phone:</p>
+            <p>Email:</p>
+            <p>Address:</p>
+            <p>City:</p>
+            <p>Zip Code:</p>
+            <p>State:</p>
+            <p>Name on Card:</p>
+            <p>Card Number:</p>
+            <p>CVC:</p>
+            <p>Expiration Date:</p>
+        `)
+    });
 }
