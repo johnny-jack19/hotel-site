@@ -8,115 +8,157 @@
     <title>Hotel</title>
 </head>
 <body>
-    <h1>Lake Hotel (needs a better name)</h1>
-    <p>Hero Image goes here</p>
-    <form id="avail-form">
-        <label for="check-in-test">
-            Check In
-            <input type="date" id="check-in-test" name="check-in-test" required>
-        </label>
-        <label for="check-out-test">
-            Check Out
-            <input type="date" id="check-out-test" name="check-out-test" required>
-        </label>
-        <input type="submit">
-    </form>
-    <div id="booking-section" class="hidden">
-        <div id="room-selection"></div>
-        <div id="price-section"></div>
-        <div id="forms">
-            <form id="booking-form">
-                <fieldset>
-                    <legend>Personal Info</legend>
-                    <label for="first-name">
-                        First Name
-                        <input type="text" id="first-name" name="first-name" pattern="[^0-9]{2,}" required>
-                    </label>
-                    <label for="last-name">
-                        Last Name
-                        <input type="text" id="last-name" name="last-name" pattern="[^0-9]{2,}" required>
-                    </label>
-                    <label for="phone">
-                        Phone Number
-                        <input type="tel" id="phone" name="phone" minlength="10" maxlength="11" required>
-                    </label>
-                    <label for="email">
-                        Email
-                        <input type="email" id="email" name="email" required>
-                    </label>
-                    <label for="address">
-                        Billing Address
-                        <input type="text" id="address" name="address" required>
-                    </label>
-                    <label for="city">
-                        City
-                        <input type="text" id="city" name="city" required>
-                    </label>
-                    <label for="zip">
-                        Zip Code
-                        <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
-                    </label>
-                    <label for="state">
-                        State
-                        <select id="state" name="state" required></select>
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <legend>Card Info</legend>
-                    <label for="card-number">
-                        Card Number
-                        <input type="text" id="card-number" name="card-number" pattern="[0-9]{15,}" required>
-                    </label>
-                    <label for="cvc">
-                        CVC
-                        <input type="text" id="cvc" name="cvc" required minlength="3" maxlength="4" pattern="[0-9]+">
-                    </label>
-                    <label for="exp-date">
-                        Expiration Date
-                        <input type="month" id="exp-date" name="exp-date" required>
-                    </label>
-                    <label for="card-name">
-                        Name on Card
-                        <input type="text" id="card-name" name="card-name" pattern="[^0-9]{2,}" required>
-                    </label>
-                </fieldset>
-                <input type="submit">
-            </form>
-            <button>Take in data button</button>
+    <h1>Indigo Sky Resort</h1>
+    <img id="hero" src="./pictures/hotel-front.jpg" alt="Hero">
+    <div id="book-container">
+        <form id="avail-form">
+            <label for="check-in-test">
+                Check In
+                <input type="date" id="check-in-test" name="check-in-test" required>
+            </label>
+            <label for="check-out-test">
+                Check Out
+                <input type="date" id="check-out-test" name="check-out-test" required>
+            </label>
+            <input type="submit">
+        </form>
+        <div id="booking-section" class="hidden">
+            <div id="room-selection"></div>
+            <div id="price-section"></div>
+            <div id="forms">
+                <form id="booking-form">
+                    <fieldset>
+                        <legend>Personal Info</legend>
+                        <label for="first-name">
+                            First Name
+                            <input type="text" id="first-name" name="first-name" pattern="[^0-9]{2,}" required>
+                        </label>
+                        <label for="last-name">
+                            Last Name
+                            <input type="text" id="last-name" name="last-name" pattern="[^0-9]{2,}" required>
+                        </label>
+                        <label for="phone">
+                            Phone Number
+                            <input type="tel" id="phone" name="phone" minlength="10" maxlength="11" required>
+                        </label>
+                        <label for="email">
+                            Email
+                            <input type="email" id="email" name="email" required>
+                        </label>
+                        <label for="address">
+                            Billing Address
+                            <input type="text" id="address" name="address" required>
+                        </label>
+                        <label for="city">
+                            City
+                            <input type="text" id="city" name="city" required>
+                        </label>
+                        <label for="zip">
+                            Zip Code
+                            <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
+                        </label>
+                        <label for="state">
+                            State
+                            <select id="state" name="state" required></select>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Card Info</legend>
+                        <label for="card-number">
+                            Card Number
+                            <input type="text" id="card-number" name="card-number" pattern="[0-9]{15,}" required>
+                        </label>
+                        <label for="cvc">
+                            CVC
+                            <input type="text" id="cvc" name="cvc" required minlength="3" maxlength="4" pattern="[0-9]+">
+                        </label>
+                        <label for="exp-date">
+                            Expiration Date
+                            <input type="month" id="exp-date" name="exp-date" required>
+                        </label>
+                        <label for="card-name">
+                            Name on Card
+                            <input type="text" id="card-name" name="card-name" pattern="[^0-9]{2,}" required>
+                        </label>
+                    </fieldset>
+                    <input type="submit">
+                </form>
+                <button>Take in data button</button>
+            </div>
+            <div id="confirmation" class="hidden"></div>
         </div>
-        <div id="confirmation" class="hidden"></div>
     </div>
     <h2>Rooms</h2>
     <div id="room-carousel">
         <div class="slide">
-            <img src="./pictures/chastity-cortijo-FJLoqqIsSHc-unsplash.jpg">
+            <img src="./pictures/king-bed.jpg">
         </div>
         <div class="slide">
-            <img src="./pictures/cristofer-maximilian-uQDRDqpYJHI-unsplash.jpg">
+            <img src="./pictures/big-bath.jpg">
         </div>
         <div class="slide">
-            <img src="./pictures/edvin-johansson-rlwE8f8anOc-unsplash.jpg">
+            <img src="./pictures/double-bed.jpg">
         </div>
         <div class="slide">
-            <img src="./pictures/melissa-cassar-wJEuwP4aaNU-unsplash.jpg">
+            <img src="./pictures/single-bed.jpg">
+        </div>
+        <div class="slide">
+            <img src="./pictures/small-bath.jpg">
         </div>
     </div>
     <button class="btn btn-prev">Back</button>
     <button class="btn btn-next">Next</button>
     <p>Room bio</p>
     <h2>Amenities</h2>
-    <div class="amenity-card">Pool</div>
-    <div class="amenity-card">Beach Access</div>
-    <div class="amenity-card">Bar</div>
-    <div class="amenity-card">Music</div>
-    <div class="amenity-card">Breakfast</div>
+    <div class="amenity-card">
+        <img src="./pictures/pool.jpg" alt="Pool">
+        <h3>Pool</h3>
+    </div>
+    <div class="amenity-card">
+        <img src="./pictures/beach-access.jpg" alt="Walk way to beach">
+        <h3>Beach Access</h3>
+    </div>
+    <div class="amenity-card">
+        <img src="./pictures/bar.jpg" alt="Bar scene">
+        <h3>Bar</h3>
+    </div>
+    <div class="amenity-card">
+        <img src="./pictures/live-music.jpg" alt="Guitar being held">
+        <h3>Live Music</h3>
+    </div>
+    <div class="amenity-card">
+        <img src="./pictures/breakfast.jpg" alt="Breakfast on a table">
+        <h3>Breakfast</h3>
+    </div>
     <h2>Explore</h2>
-    <p>map</p>
-    <h3>Beach</h3>
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="600" height="500" id="gmap_canvas" 
+            src="https://maps.google.com/maps?q=9800%20Queensway%20Blvd,%20Myrtle%20Beach.%20SC&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+            frameborder="0" loading="lazy" marginheight="0" marginwidth="0" allowfullscreen=""></iframe>
+        </div>
+    </div>
     <h3>Food</h3>
+    <ul>
+        <li>Mr. Sharky's Seafood Delight</li>
+        <li>The Treasure Chest Buffet</li>
+    </ul>
     <h3>Fun for kids</h3>
+    <ul>
+        <li>Black Beard's Mini Golf</li>
+        <li>Mermaid Splash Park</li>
+    </ul>
     <h3>Night Life</h3>
-    <footer>Footer</footer>
+    <ul>
+        <li>The Pirate's Booty</li>
+        <li>Life's a Beach, Bar and Grill</li>
+    </ul>
+    <footer>
+        <p class="footer-title">Indigo Sky Resort</p>
+        <address>9800 Queensway Blvd</address>
+        <address>Myrtle Beach, SC 29572</address>
+        <p>(123)-456-7890</p>
+    </footer>
     <script src="./javascript/index.js"></script>
 </body>
 </html>

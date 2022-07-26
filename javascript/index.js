@@ -15,39 +15,32 @@ const slides = document.querySelectorAll(".slide");
 slides.forEach((slide, indx) => {
   slide.style.transform = `translateX(${indx * 100}%)`;
 });
-const nextSlide = document.querySelector(".btn-next");
-
-// current slide counter
-let curSlide = 0;
-// maximum number of slides
+let currentSlide = 0;
 let maxSlide = slides.length - 1;
 
-// add event listener and navigation functionality
+
+const nextSlide = document.querySelector(".btn-next");
 nextSlide.addEventListener("click", function () {
-  // check if current slide is the last and reset current slide
-  if (curSlide === maxSlide) {
-    curSlide = 0;
+  if (currentSlide === maxSlide) {
+    currentSlide = 0;
   } else {
-    curSlide++;
+    currentSlide++;
   }
   slides.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+    slide.style.transform = `translateX(${100 * (indx - currentSlide)}%)`;
   });
 });
-// select prev slide button
-const prevSlide = document.querySelector(".btn-prev");
 
-// add event listener and navigation functionality
+const prevSlide = document.querySelector(".btn-prev");
 prevSlide.addEventListener("click", function () {
-  // check if current slide is the first and reset current slide to last
-  if (curSlide === 0) {
-    curSlide = maxSlide;
+  if (currentSlide === 0) {
+    currentSlide = maxSlide;
   } else {
-    curSlide--;
+    currentSlide--;
   }
 
   //   move slide by 100%
   slides.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+    slide.style.transform = `translateX(${100 * (indx - currentSlide)}%)`;
   });
 });
