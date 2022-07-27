@@ -279,3 +279,82 @@ h4 {
 .hidden {
     display: none;
 }
+
+@media only screen and (min-width: 900px) {
+    .row-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .mapouter {
+        padding-bottom: 500px;
+    }
+
+    .amenity-card {
+        position: relative;
+        width: 40vw;
+        height: 25vw;
+        border: 1px solid black;
+        border-radius: 8px;
+        box-shadow: 5px 5px 8px black;
+        margin: 1em auto;
+    }
+
+    .amenity-card h3 {
+        font-size: 5vw;
+        margin-top: 17.7vw;
+        margin-left: 0;
+        border-radius: 0 0 8px 8px;
+    }
+
+    #room-carousel {
+        width: 40vw;
+        height: 25vw;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+      
+    .slide {
+        height: 25vw;
+    }
+
+    .btn {
+        top: 11vw;
+        width: 5vw;
+        height: 5vw;
+        border-radius: 50%;
+        font-size: 3vw;
+        opacity: .3;
+        color: white;
+        background-color: rgb(0, 245, 212);
+    }
+    
+    .btn-prev {
+        left: 1vw;
+    }
+    
+    .btn-next {
+        left: 34vw;
+    }
+
+    .room-bio {
+        width: 45%;
+        align-self: center;
+    }
+
+    #hero {
+        width: 50vw;
+        height: 31vw;
+    }
+    
+    .hero-slide {
+        height: 31vw;
+    }
+
+    #h1-wrapper {
+        flex-grow: 1;
+        padding: 0;
+        padding-top: 10vw;
+    }
+}
