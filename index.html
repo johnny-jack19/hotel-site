@@ -1,164 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Overpass|Permanent+Marker" rel="stylesheet">
     <link href="./styles/index.css" rel="stylesheet">
     <title>Hotel</title>
 </head>
+
 <body>
-    <h1>Indigo Sky Resort</h1>
-    <img id="hero" src="./pictures/hotel-front.jpg" alt="Hero">
-    <div id="book-container">
-        <form id="avail-form">
-            <label for="check-in-test">
-                Check In
-                <input type="date" id="check-in-test" name="check-in-test" required>
-            </label>
-            <label for="check-out-test">
-                Check Out
-                <input type="date" id="check-out-test" name="check-out-test" required>
-            </label>
-            <input type="submit">
-        </form>
-        <div id="booking-section" class="hidden">
-            <div id="room-selection"></div>
-            <div id="price-section"></div>
-            <div id="forms">
-                <form id="booking-form">
-                    <fieldset>
-                        <legend>Personal Info</legend>
-                        <label for="first-name">
-                            First Name
-                            <input type="text" id="first-name" name="first-name" pattern="[^0-9]{2,}" required>
-                        </label>
-                        <label for="last-name">
-                            Last Name
-                            <input type="text" id="last-name" name="last-name" pattern="[^0-9]{2,}" required>
-                        </label>
-                        <label for="phone">
-                            Phone Number
-                            <input type="tel" id="phone" name="phone" minlength="10" maxlength="11" required>
-                        </label>
-                        <label for="email">
-                            Email
-                            <input type="email" id="email" name="email" required>
-                        </label>
-                        <label for="address">
-                            Billing Address
-                            <input type="text" id="address" name="address" required>
-                        </label>
-                        <label for="city">
-                            City
-                            <input type="text" id="city" name="city" required>
-                        </label>
-                        <label for="zip">
-                            Zip Code
-                            <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
-                        </label>
-                        <label for="state">
-                            State
-                            <select id="state" name="state" required></select>
-                        </label>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Card Info</legend>
-                        <label for="card-number">
-                            Card Number
-                            <input type="text" id="card-number" name="card-number" pattern="[0-9]{15,}" required>
-                        </label>
-                        <label for="cvc">
-                            CVC
-                            <input type="text" id="cvc" name="cvc" required minlength="3" maxlength="4" pattern="[0-9]+">
-                        </label>
-                        <label for="exp-date">
-                            Expiration Date
-                            <input type="month" id="exp-date" name="exp-date" required>
-                        </label>
-                        <label for="card-name">
-                            Name on Card
-                            <input type="text" id="card-name" name="card-name" pattern="[^0-9]{2,}" required>
-                        </label>
-                    </fieldset>
-                    <input type="submit">
-                </form>
-                <button>Take in data button</button>
+    <div id="h1-wrapper">
+        <h1>Indigo Sky Resort</h1>
+    </div>
+    <div id="hero">
+        <div class="hero-slide">
+            <img src="./pictures/hotel-front.jpg" alt="Hero">
+        </div>
+        <div class="hero-slide">
+            <img src="./pictures/beach-chairs.jpg" alt="Chairs on a beach">
+        </div>
+        <div class="hero-slide">
+            <img src="./pictures/sunset-1.jpg" alt="Sunset">
+        </div>
+        <div class="hero-slide">
+            <img src="./pictures/hammock.jpg" alt="Hammock">
+        </div>
+        <div class="hero-slide">
+            <img src="./pictures/sunset-2.jpg" alt="Sunset">
+        </div>
+    </div>
+    <div class="main-container">
+        <div id="book-container">
+            <form id="avail-form">
+                <label for="check-in-test">
+                    Check In
+                    <input type="date" id="check-in-test" name="check-in-test" required>
+                </label>
+                <label for="check-out-test">
+                    Check Out
+                    <input type="date" id="check-out-test" name="check-out-test" required>
+                </label>
+                <input type="submit">
+            </form>
+        </div>
+        <h2>Rooms</h2>
+        <div id="room-carousel">
+            <div class="slide">
+                <img src="./pictures/king-bed.jpg">
             </div>
-            <div id="confirmation" class="hidden"></div>
+            <div class="slide">
+                <img src="./pictures/big-bath.jpg">
+            </div>
+            <div class="slide">
+                <img src="./pictures/double-bed.jpg">
+            </div>
+            <div class="slide">
+                <img src="./pictures/single-bed.jpg">
+            </div>
+            <div class="slide">
+                <img src="./pictures/small-bath.jpg">
+            </div>
+            <button class="btn btn-prev"><</button>
+            <button class="btn btn-next">></button>
         </div>
-    </div>
-    <h2>Rooms</h2>
-    <div id="room-carousel">
-        <div class="slide">
-            <img src="./pictures/king-bed.jpg">
+        <p class="room-bio">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida. 
+            Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec odio eros, faucibus eu pretium dapibus, gravida ac tortor. 
+            Nunc neque lorem, ultricies sit amet iaculis eget, congue sed neque. Fusce sagittis purus ex, nec gravida elit euismod sed. 
+            Donec congue tempor tortor nec cursus. Praesent vel maximus justo. Praesent metus libero, cursus faucibus nulla sit amet, 
+            convallis bibendum lectus. Duis porta congue ipsum, in fringilla diam mollis ac. Curabitur hendrerit, enim quis mollis euismod, 
+            purus dui suscipit tortor, ut cursus dolor elit rhoncus tellus. Vivamus a mattis sem, ut imperdiet quam. Duis fringilla nisi vitae sem cursus, 
+            vitae ultricies est euismod. Vivamus ornare ultrices augue, pulvinar sollicitudin justo rutrum ac. Quisque finibus semper ex id lobortis.
+        </p>
+        <h2>Amenities</h2>
+        <div class="amenity-card">
+            <img src="./pictures/pool.jpg" alt="Pool">
+            <h3>Pool</h3>
+            <div class="overlay"></div>
+            <p class="overlay-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida.</p>
         </div>
-        <div class="slide">
-            <img src="./pictures/big-bath.jpg">
+        <div class="amenity-card">
+            <img src="./pictures/beach-access.jpg" alt="Walk way to beach">
+            <h3>Beach Access</h3>
+            <div class="overlay"></div>
+            <p class="overlay-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida.</p>
         </div>
-        <div class="slide">
-            <img src="./pictures/double-bed.jpg">
+        <div class="amenity-card">
+            <img src="./pictures/bar.jpg" alt="Bar scene">
+            <h3>Bar</h3>
+            <div class="overlay"></div>
+            <p class="overlay-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida.</p>
         </div>
-        <div class="slide">
-            <img src="./pictures/single-bed.jpg">
+        <div class="amenity-card">
+            <img src="./pictures/live-music.jpg" alt="Guitar being held">
+            <h3>Live Music</h3>
+            <div class="overlay"></div>
+            <p class="overlay-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida.</p>
         </div>
-        <div class="slide">
-            <img src="./pictures/small-bath.jpg">
+        <div class="amenity-card">
+            <img src="./pictures/breakfast.jpg" alt="Breakfast on a table">
+            <h3>Breakfast</h3>
+            <div class="overlay"></div>
+            <p class="overlay-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu tellus et leo facilisis gravida.</p>
         </div>
-    </div>
-    <button class="btn btn-prev">Back</button>
-    <button class="btn btn-next">Next</button>
-    <p>Room bio</p>
-    <h2>Amenities</h2>
-    <div class="amenity-card">
-        <img src="./pictures/pool.jpg" alt="Pool">
-        <h3>Pool</h3>
-    </div>
-    <div class="amenity-card">
-        <img src="./pictures/beach-access.jpg" alt="Walk way to beach">
-        <h3>Beach Access</h3>
-    </div>
-    <div class="amenity-card">
-        <img src="./pictures/bar.jpg" alt="Bar scene">
-        <h3>Bar</h3>
-    </div>
-    <div class="amenity-card">
-        <img src="./pictures/live-music.jpg" alt="Guitar being held">
-        <h3>Live Music</h3>
-    </div>
-    <div class="amenity-card">
-        <img src="./pictures/breakfast.jpg" alt="Breakfast on a table">
-        <h3>Breakfast</h3>
-    </div>
-    <h2>Explore</h2>
-    <div class="mapouter">
-        <div class="gmap_canvas">
-            <iframe width="600" height="500" id="gmap_canvas" 
-            src="https://maps.google.com/maps?q=9800%20Queensway%20Blvd,%20Myrtle%20Beach.%20SC&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-            frameborder="0" loading="lazy" marginheight="0" marginwidth="0" allowfullscreen=""></iframe>
+        <h2>Explore</h2>
+        <div class="mapouter">
+            <div class="gmap_canvas">
+                <iframe width="600" height="500" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=9800%20Queensway%20Blvd,%20Myrtle%20Beach.%20SC&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0" loading="lazy" marginheight="0" marginwidth="0" allowfullscreen=""></iframe>
+            </div>
         </div>
+        <h3>Food</h3>
+        <ul>
+            <li>
+                <h4>Mr. Sharky's Seafood Delight</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+            <li>
+                <h4>The Treasure Chest Buffet</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+        </ul>
+        <h3>Fun for kids</h3>
+        <ul>
+            <li>
+                <h4>Black Beard's Mini Golf</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+            <li>
+                <h4>Mermaid Splash Park</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+        </ul>
+        <h3>Night Life</h3>
+        <ul>
+            <li>
+                <h4>The Pirate's Booty</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+            <li>
+                <h4>Life's a Beach, Bar and Grill</h4>
+                <address>123 Made Up St.</address>
+                <address>Myrtle Beach, SC 29572</address>
+                <p>(123)-456-7890</p>
+            </li>
+        </ul>
+        <footer>
+            <p class="footer-title">Indigo Sky Resort</p>
+            <address>9800 Queensway Blvd</address>
+            <address>Myrtle Beach, SC 29572</address>
+            <p>(123)-456-7890</p>
+        </footer>
     </div>
-    <h3>Food</h3>
-    <ul>
-        <li>Mr. Sharky's Seafood Delight</li>
-        <li>The Treasure Chest Buffet</li>
-    </ul>
-    <h3>Fun for kids</h3>
-    <ul>
-        <li>Black Beard's Mini Golf</li>
-        <li>Mermaid Splash Park</li>
-    </ul>
-    <h3>Night Life</h3>
-    <ul>
-        <li>The Pirate's Booty</li>
-        <li>Life's a Beach, Bar and Grill</li>
-    </ul>
-    <footer>
-        <p class="footer-title">Indigo Sky Resort</p>
-        <address>9800 Queensway Blvd</address>
-        <address>Myrtle Beach, SC 29572</address>
-        <p>(123)-456-7890</p>
-    </footer>
     <script src="./javascript/index.js"></script>
 </body>
+
 </html>

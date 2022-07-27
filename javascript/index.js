@@ -1,9 +1,5 @@
 let states = 'Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming'
 let myStates = states.split(',');
-for (state of myStates) {
-    let stateOption = `<option value="${state}">${state}</option>`
-    document.getElementById('state').innerHTML += stateOption;
-}
 const url = 'http://localhost:3000'
 
 const today = new Date();
@@ -39,8 +35,29 @@ prevSlide.addEventListener("click", function () {
     currentSlide--;
   }
 
-  //   move slide by 100%
   slides.forEach((slide, indx) => {
     slide.style.transform = `translateX(${100 * (indx - currentSlide)}%)`;
   });
 });
+
+//Hero
+const heroSlides = document.querySelectorAll(".hero-slide");
+
+heroSlides.forEach((slide, indx) => {
+  slide.style.transform = `translateX(${indx * 100}%)`;
+});
+let currentHeroSlide = 0;
+let maxHeroSlide = heroSlides.length - 1;
+
+function heroCarousel() {
+  if (currentHeroSlide === maxHeroSlide) {
+    currentHeroSlide = 0;
+  } else {
+    currentHeroSlide++;
+  }
+  heroSlides.forEach((slide, indx) => {
+    slide.style.transform = `translateX(${100 * (indx - currentHeroSlide)}%)`;
+  });
+}
+
+setInterval(heroCarousel, 5000);
