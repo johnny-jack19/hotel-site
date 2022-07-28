@@ -3,16 +3,40 @@
     padding: 0;
 }
 
-
-
-h1, h2, h3 {
-    font-family: 'Permanent Marker', Cursive;
-}
-
 body {
     background-color: rgb(155, 93, 229);
     overflow-x: hidden;
     font-family: 'Overpass', Sans-Serif;
+}
+
+footer {
+    background-color: rgb(0, 100, 250);
+    color: white;
+    text-align: center;
+    line-height: 1.5em;
+    padding: .5em;
+}
+
+form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(241, 91, 181);
+}
+
+h1, h2, h3 {
+    font-family: 'Permanent Marker', Cursive;
+    text-shadow: 2px 2px 8px black;
+}
+
+h1 {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    background-color: rgb(66, 69, 250);
+    border-radius: 50%;
+    margin: .3em 0;
 }
 
 h2 {
@@ -23,6 +47,28 @@ h2 {
     margin-bottom: .3em;
 }
 
+h3 {
+    color: rgb(0, 245, 212);
+    font-size: 1.8em;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+h4 {
+    font-size: 1.2em;
+    margin-left: -.5em;
+}
+
+input[type="submit"] {
+    background-color: rgb(66, 69, 250);
+    color: white;
+    font-size: 1.2em;
+    width: 5em;
+    height: 2em;
+    border-radius: 8px;
+    margin: .5em 0;
+}
+
 label {
     display: flex;
     flex-direction: column;
@@ -30,12 +76,12 @@ label {
     font-size: 1.2em;
 }
 
-form {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(241, 91, 181);
+li {
+    color: white;
+    padding: .5em;
+    margin-left: 2.5em;
+    font-size: 1.2em;
+    list-style: none;
 }
 
 .overlay {
@@ -67,43 +113,6 @@ form {
     margin: 1em auto;
     text-align: center;
 }
-
-#avail-form {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-}
-
-#avail-form label {
-    color: white;
-    width: 30%;
-}
-
-input[type="submit"] {
-    background-color: rgb(66, 69, 250);
-    color: white;
-    font-size: 1.2em;
-    width: 5em;
-    height: 2em;
-    border-radius: 8px;
-    margin: .5em 0;
-}
-
-fieldset {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-#room-carousel {
-    width: 80vw;
-    height: 50vw;
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    margin: auto;
-}
   
 .slide {
     width: 100%;
@@ -128,22 +137,20 @@ fieldset {
     opacity: .3;
     color: white;
     background-color: rgb(0, 245, 212);
+
+}
+.btn-next {
+    left: 69vw;
 }
 
 .btn-prev {
     left: 1vw;
 }
 
-.btn-next {
-    left: 69vw;
-}
 
-#hero {
-    display: block;
-    width: 100vw;
-    height: 62vw;
-    position: relative;
-    overflow: hidden;
+.footer-title {
+    font-family: 'Permanent Marker', Cursive;
+    font-size: 1.5em;
 }
 
 .main-container {
@@ -222,42 +229,38 @@ fieldset {
     height: 100%;
 }
 
-footer {
-    background-color: rgb(0, 100, 250);
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    background-color: black;
+    opacity: .8;
+}
+
+#avail-form {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#avail-form label {
     color: white;
-    text-align: center;
-    line-height: 1.5em;
-    padding: .5em;
+    width: 30%;
 }
 
-h3 {
-    color: rgb(0, 245, 212);
-    font-size: 1.8em;
-    margin-top: 1em;
-    margin-left: 1em;
-}
 
-li {
-    color: white;
-    padding: .5em;
-    margin-left: 2.5em;
-    font-size: 1.2em;
-    list-style: none;
-}
 
-h1 {
-    color: white;
-    font-size: 3em;
-    text-align: center;
-    background-color: rgb(66, 69, 250);
-    text-shadow: 2px 2px 2px black;
-    border-radius: 50%;
-    margin: .3em 0;
-}
-
-h4 {
-    font-size: 1.2em;
-    margin-left: -.5em;
+#room-carousel {
+    width: 80vw;
+    height: 50vw;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: auto;
 }
 
 #h1-wrapper {
@@ -271,15 +274,146 @@ h4 {
     z-index: 4;
 }
 
-.footer-title {
-    font-family: 'Permanent Marker', Cursive;
-    font-size: 1.5em;
+#hero {
+    display: block;
+    width: 100vw;
+    height: 62vw;
+    position: relative;
+    overflow: hidden;
 }
 
+#modal {
+    position: fixed;
+    z-index: 6;
+    top: 10vh;
+    left: 10vw;
+    width: 80vw;
+    height: 80vh;
+    background-color: rgb(241, 91, 181);
+    border-radius: 8px;
+}
+
+#modal h3{
+    margin: 0;
+    font-size: 2em;
+    padding: .5em 0;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    background-color: rgb(0, 245, 212);
+    color: white;
+}
+
+#modal_book-form {
+    width: 95%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#modal_book-form label {
+    width: 45%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+}
+
+#modal_book-form input[type="submit"] {
+    margin: 2em;
+}
+
+#modal_book-form label.full {
+    width: 95%;
+}
+
+.close {
+    position: absolute;
+    font-size: 3vw;
+    width: 5vw;
+    min-width: 25px;
+    height: 5vw;
+    min-height: 25px;
+    top: 0;
+    left: 75vw;
+    border-radius: 8px;
+    color: white;
+    background-color: rgb(0, 100, 250);
+}
+
+.loading {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 25vh;
+}
+
+.room-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    margin: auto;
+    height: 80%;
+}
+
+.avail-room {
+    background-color: rgb(155, 93, 229);
+    padding: .5em;
+    border-radius: 5px;
+    border: 3px solid rgb(254, 228, 64);
+}
+
+.avail-room p {
+    color: white;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.booking-info-modal {
+    display: flex;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.booking-info-modal div {
+    width: 40%;
+    flex-grow: 1;
+    padding: .5em;
+}
+
+.check-row {
+    display: flex;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.check-row div {
+    width: 40%;
+    padding: .5em;
+    flex-grow: 1;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10vw;
+}
+
+.button-row button {
+    background-color: rgb(0, 100, 250);
+    color: white;
+    width: 4em;
+    height: 1.2em;
+    font-size: 2em;
+    margin-top: 1em;
+    border-radius: 12px;
+}
+
+/* ---------------------------------------------Hidden--------------------------------------------- */
 .hidden {
     display: none;
 }
 
+/* --------------------------------------------Desktop--------------------------------------------- */
 @media only screen and (min-width: 900px) {
     .row-wrapper {
         display: flex;

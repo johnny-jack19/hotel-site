@@ -36,13 +36,13 @@
     <div class="main-container">
         <div id="book-container">
             <form id="avail-form">
-                <label for="check-in-test">
+                <label for="check-in">
                     Check In
-                    <input type="date" id="check-in-test" name="check-in-test" required>
+                    <input type="date" id="check-in" name="check-in" required>
                 </label>
-                <label for="check-out-test">
+                <label for="check-out">
                     Check Out
-                    <input type="date" id="check-out-test" name="check-out-test" required>
+                    <input type="date" id="check-out" name="check-out" required>
                 </label>
                 <input type="submit">
             </form>
@@ -179,7 +179,13 @@
             <p>(123)-456-7890</p>
         </footer>
     </div>
+    <div id="modal-overlay" class="modal-overlay hidden"></div>
+    <div id="modal" class="hidden">
+        <button onclick="closeModal()">X</button>
+        <button onclick="modalBook()">Book</button>
+    </div>
     <script src="./javascript/index.js"></script>
+    <script src="./javascript/indexCalls.js"></script>
 </body>
 
 </html>
