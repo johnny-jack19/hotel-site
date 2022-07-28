@@ -1,3 +1,5 @@
+//This file was used to add day to the SQL table
+
 const url = 'http://localhost:3000';
 function makeCalDay(day) {
     fetch(url + '/make',
