@@ -28,6 +28,6 @@ This is done through the booking. It takes in the check in, check out, and room 
 determine price.
 2. Create a form and save the values (on click of Submit button) to an external file.  The booking
 posts to a sqlite3 file.
-3.Visualize data in a graph, chart, or other visual representation of data.  The calendar.
-4.Create a web server with at least one route and connect to it from your application using ExpressJS.
+3. Visualize data in a graph, chart, or other visual representation of data.  The calendar.
+4. Create a web server with at least one route and connect to it from your application using ExpressJS.
 The app.js and everything in the db folder.
